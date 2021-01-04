@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+cd `dirname $0`
+install="install -b --compare"
+
+
+echo "Check and run printed commands manually." >&2
+
+
+git ls-files | while read f
+do
+	[ $f = gather     ] && continue
+	[ $f = install    ] && continue
+	[ $f = .gitignore ] && continue
+
+	dir=`dirname $f`
+	[ $dir = . ] || echo mkdir -p ~/$dir
+	echo $install $f ~/$f
+done
+
+
+[ -e ~/.vimrc ] || echo ln -s  ~/.config/nvim/init.vim ~/.vimrc
+
+# vim:ft=sh
