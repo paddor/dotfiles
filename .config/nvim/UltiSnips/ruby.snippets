@@ -1,0 +1,34 @@
+snippet exp
+expect(${1:subject}).to receive(:${2})${0}
+endsnippet
+
+snippet al
+allow(${1:subject}).to receive(:${2})${0}
+endsnippet
+
+snippet descm
+describe '#${1:method}' do
+  ${0:pending 'Not implemented'}
+end
+endsnippet
+
+
+snippet @p
+@param ${1:name} [${2:type}]
+endsnippet
+
+snippet @r
+@return [${1:type}]
+endsnippet
+
+snippet @f
+@raise [${1:RuntimeError}]
+endsnippet
+
+snippet @yp
+@yieldparam ${1:name} [${2:type}]
+endsnippet
+
+snippet @yr
+@yieldreturn [${1:type}]
+endsnippet

@@ -13,13 +13,15 @@ else
 	call plug#begin('~/.vim/plugged')
 endif
 
-Plug 'tpope/vim-sensible'
+if !has('nvim')
+	Plug 'tpope/vim-sensible'
+endif
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-eunuch'
-"Plug 'tpope/vim-vinegar'
+"Plug 'tpope/vim-vinegar' " lingering buffers in :Buffers :/
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -32,18 +34,21 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+"Plug 'inkarkat/vim-EnhancedJumps' " WTF broken?
 
 Plug 'vim-ruby/vim-ruby'
-Plug 'lucapette/vim-ruby-doc'
+" Plug 'lucapette/vim-ruby-doc' " unusable in TUI: https://github.com/lucapette/vim-ruby-doc/issues/8
 Plug 'vim-scripts/matchit.zip'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'justinmk/vim-sneak'
+Plug 'glts/vim-textobj-comment'
 
 Plug 'glts/vim-magnum' " for vim-radical
 Plug 'glts/vim-radical'
 
-Plug 'svermeulen/vim-easyclip'
+"Plug 'svermeulen/vim-easyclip' " too much. Better solution: vim-subversive
+Plug 'svermeulen/vim-subversive'
 Plug 'junegunn/vim-easy-align'
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -51,12 +56,14 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'micha/vim-colors-solarized'
-" Plug 'Yggdroot/indentLine'
-Plug 'preservim/tagbar'
+Plug 'machakann/vim-highlightedyank'
+Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
+Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
 Plug 'itchyny/lightline.vim'
-"Plug 'edkolev/tmuxline.vim'
 Plug 'thoughtbot/vim-rspec'
+
 Plug 'kassio/neoterm'
+Plug 'hwartig/vim-seeing-is-believing'
 
 
 " Initialize plugin system
@@ -81,8 +88,10 @@ endif
 
 
 " tabstop
-" autocmd Filetype ruby set ts=2 sw=2 et
-autocmd Filetype cpp set ts=2 sw=2 et
+augroup TwoSpacesAsTab
+  autocmd!
+  autocmd Filetype cpp,vim set ts=2 sw=2 et
+augroup END
 
 
 hi clear Search
@@ -131,8 +140,8 @@ noremap <Esc> :update<CR>
 set updatetime=4000
 
 " faster scrolling with ^e ^y
-"nnoremap <C-e> 2<C-e>
-"nnoremap <C-y> 2<C-y>
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " line-wise scrolling with track pad
 map <ScrollWheelUp> <C-Y>
@@ -144,25 +153,30 @@ runtime macros/matchit.vim " and needed for textobj-rubyblock
 " moving between tabs
 " map <S-L> :tabn<return>
 " map <S-H> :tabprev<return>
+map <S-right> :tabn<return>
+map <S-left> :tabprev<return>
 
 " nice leader key to bind custom actions
 "let mapleader = ","
 set timeoutlen=700 " ms
 
 " stop highlighting search results
-nmap <silent> <leader>n :silent :nohlsearch<CR>
+nnoremap <silent> <leader>n :silent :nohlsearch<CR>
 
 " toggle line numbers
-nmap <silent> <leader>m :silent :set nu!<CR>
+nnoremap <silent> <leader>m :silent :set nu!<CR>
 
 " toggle listchars
-nmap <silent> <leader>l :silent :set list!<CR>
+nnoremap <silent> <leader>l :silent :set list!<CR>
 
 " run makeprg
-nmap <leader>b :Make<CR>
-nmap <leader>B :Make!<CR>
+nnoremap <leader>b :Make %<CR>
+"nnoremap <leader>B :Make<CR>
+"nnoremap <silent> <leader>r :Dispatch<CR>
+" NOTE: Using the mappings from Dispatch instead. See :h dispatch-maps
 " Dispatch (e.g. Rspec)
-nmap <silent> <leader>r :Dispatch<CR>
+"autocmd FileType ruby let b:dispatch = 'bundle exec rspec -ff %'
+" NOTE: Set in .projectionist.json file instead.
 
 
 " Move cursor back to where it was in insert mode after exiting insert mode.
@@ -175,10 +189,13 @@ let NERDTreeMinimalMenu=1
 let NERDTreeMinimalUI=1
 nnoremap <leader>t :NERDTreeToggleVCS<CR>
 nnoremap - :NERDTreeFind<CR>
-" open NERDTree when no file args given
-"autocmd vimenter * if !argc() | NERDTree | endif
-" close when NERDTree is last window
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup NERDTreeConfig
+  au!
+  " open NERDTree when no file args given
+  "autocmd vimenter * if !argc() | NERDTree | endif
+  " close when NERDTree is last window
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 set modelines=5
 "set cursorline " highlight current line
@@ -187,37 +204,38 @@ set modelines=5
 "set listchars=tab:>-,trail:^,eol:$
 "set listchars=tab:>-,trail:_,eol:$
 "set listchars=tab:>-,eol:$
-"set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨ " let's see how vim-sensible feels
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set fillchars="stl:,stlnc:,vert:|,fold:-,diff:-"
-"set showbreak=↪\ 
+set showbreak=↪
 
 
 " don't treat "-" as a word character
 set iskeyword-=-
-
 
 set bg=dark
 colorscheme solarized
 
 "hi clear Search
 "hi Search cterm=reverse
-hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
-
+"hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
+hi Search cterm=bold ctermbg=darkcyan ctermfg=black
+" hi Search cterm=bold ctermbg=darkyellow ctermfg=black
 "hi Search cterm=reverse ctermbg=magenta ctermfg=magenta
 "hi IncSearch cterm=underline,reverse
 "hi CursorLine cterm=none ctermfg=none ctermbg=black
+"hi CursorLine cterm=none ctermfg=none ctermbg=none
+"hi CursorLineNr cterm=none ctermfg=none ctermbg=none
+"reset CursorLine
+" hi CursorLine cterm=none ctermfg=none ctermbg=none
 "hi StatusLine   cterm=bold ctermfg=grey ctermbg=black " horizontal line below window
 "hi StatusLineNC cterm=none ctermfg=grey ctermbg=black " not current window
 "hi VertSplit    cterm=none ctermfg=grey ctermbg=black
 hi VertSplit    cterm=none ctermfg=green ctermbg=none
 "hi LineNr ctermfg=yellow ctermbg=black cterm=none
 "hi SignColumn ctermfg=yellow ctermbg=black cterm=none
-""hi Visual cterm=NONE ctermbg=black
+hi Visual cterm=NONE ctermbg=darkgreen
 "hi Visual cterm=none ctermfg=magenta ctermbg=black
-"hi Visual cterm=reverse ctermbg=white
-"hi Comment cterm=none ctermfg=darkblue
-"hi String ctermfg=1 cterm=bold
-"hi Special ctermbg=NONE ctermfg=darkblue cterm=NONE
+" hi Visual cterm=reverse ctermbg=white
 hi SpecialKey ctermbg=NONE ctermfg=darkblue cterm=NONE " nbsp, space, tab and trail
 "hi Todo ctermbg=darkyellow ctermfg=black cterm=bold " TODOs
 " TODO
@@ -227,9 +245,19 @@ hi TabLine ctermfg=darkyellow ctermbg=black cterm=none
 hi TabLineSel ctermfg=darkyellow cterm=bold,reverse
 "hi Folded ctermfg=yellow ctermbg=none cterm=underline
 "hi MatchParen ctermbg=darkyellow ctermfg=grey cterm=none,bold
-"hi MatchParen ctermfg=darkyellow ctermbg=none
-match ErrorMsg '\s\+$'
+hi MatchParen ctermfg=darkmagenta ctermbg=none
+hi link QuickFixLine ErrorMsg
 
+" show extra white spaces as errors, but not while typing
+hi link ExtraWhiteSpace ErrorMsg
+match ExtraWhiteSpace '\s\+$'
+augroup ExtraWhitespace
+  au!
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/ " \%# = cursor position, \@<! = only match if previous atom doesn't match
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd BufWinLeave * call clearmatches()
+augroup END
 
 "hi DiffAdd        ctermfg=darkgreen ctermbg=none
 "hi DiffChange     ctermfg=none ctermbg=none
@@ -238,11 +266,11 @@ match ErrorMsg '\s\+$'
 
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " alternate file (projectionist)
-nmap <silent> <leader>a :A<CR>
+nnoremap <silent> <leader>a :A<CR>
 
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -272,20 +300,24 @@ nnoremap <F8> :TagbarToggle<CR>
 nnoremap <leader>T :TagbarToggle<CR>
 let g:tagbar_position='topleft vertical'
 "let g:tagbar_sort = 0
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 
 " FZF
 nnoremap <m-g> :GFiles<CR>
 nnoremap <m-f> :Files<CR>
-
-set splitright
-set splitbelow
+" fix closing FZF with Esc: https://github.com/junegunn/fzf.vim/issues/1213
+autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+nnoremap gb :Buffers<CR>
+" search for word under cursor with :Ag
+nnoremap <leader>A "ayiw:Ag <c-R>a<CR>
 
 " fast buffer listing and switching
 " vanilla:
 " nnoremap gb :ls<CR>:b<Space>
-" with FZF:
-nnoremap gb :Buffers<CR>
+
+set splitright
+set splitbelow
 
 " vertical split :h (help)
 cabbrev h vert to h
@@ -301,11 +333,13 @@ set nofixeol
 
 
 " M to move text from cursor to end of line (easyclip)
-nmap M <Plug>MoveMotionEndOfLinePlug
+"nmap M <Plug>MoveMotionEndOfLinePlug
 
 
-nnoremap <F12> :so $MYVIMRC \| :PlugInstall<CR>
-nnoremap <S-F12> :PlugUpdate<CR>
+" tends to fail 1st time
+" nmap <F12> :so $MYVIMRC \| :PlugInstall \| :PlugUpdate<CR>
+nmap <F12> :so $MYVIMRC \| :PlugInstall<CR>
+"nmap <S-F12> :PlugUpdate<CR> " mapping S-F* is hard
 
 
 set wildmode=longest:full,full
@@ -320,6 +354,7 @@ cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 " NeoTerm
 let g:neoterm_repl_ruby='pry'
 let g:neoterm_autoscroll='1'
+tnoremap <Esc> <C-\><C-n>
 
 
 " Bundler
@@ -327,14 +362,101 @@ let $DEV_ENV='true'
 
 
 " vim-ruby
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_load_gemfile = 1
-autocmd FileType ruby,eruby let g:rubycomplete_use_bundler = 1
-let ruby_operators        = 1
-let ruby_pseudo_operators = 1
-"let ruby_fold = 0
-"let ruby_foldable_groups = 'def'
+augroup RubyComplete
+  autocmd!
+  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_load_gemfile = 1
+  autocmd FileType ruby,eruby let g:rubycomplete_use_bundler = 1
+  let ruby_operators        = 1
+  let ruby_pseudo_operators = 1
+  "let ruby_fold = 0
+  "let ruby_foldable_groups = 'def'
+augroup END
+
 
 " vim-ruby-doc
 "let g:ruby_doc_command='w3m'
+
+" if !exists('g:dispatch_compilers')
+"   let g:dispatch_compilers = {}
+" endif
+" let g:dispatch_compilers['rspec'] = 'rake'
+
+
+augroup VimRspec
+  au!
+  autocmd FileType ruby,eruby let g:rspec_command = "compiler rspec | Make {spec}"
+augroup END
+nnoremap <silent> <leader>rn :call RunNearestSpec()<CR>
+nnoremap <silent> <leader>rl :call RunLastSpec()<CR>
+
+" Comments with CTRL-/ (typed using CTRL-V CTRL-/)
+nnoremap  :Commentary<CR>j
+xnoremap  :'<,'>Commentary<CR>
+
+" s for substitute (vim-subversive)
+" nmap s <plug>(SubversiveSubstitute)
+" nmap ss <plug>(SubversiveSubstituteLine)
+" nmap S <plug>(SubversiveSubstituteToEndOfLine)
+nmap <leader>s <plug>(SubversiveSubstituteRange)
+xmap <leader>s <plug>(SubversiveSubstituteRange)
+nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
+nmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
+xmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
+nmap <leader>css <plug>(SubversiveSubstituteWordRangeConfirm)
+let g:subversivePromptWithActualCommand = 1
+let g:subversivePreserveCursorPosition = 1
+
+" ie = inner entire buffer
+onoremap ie :exec "normal! ggVG"<cr>
+
+" iv = current viewable text in the buffer
+onoremap iv :exec "normal! HVL"<cr>
+
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+nnoremap <leader>i :IndentLinesToggle<CR>
+
+" don't insert comment leader when hitting o/O
+augroup FormatOptions
+  au!
+  autocmd BufNewFile,BufRead * setlocal formatoptions-=o
+augroup END
+
+
+" RGB
+" if has('termguicolors')
+" 	set termguicolors " UGLY
+" endif
+
+
+" Enable seeing-is-believing mappings only for Ruby
+augroup seeingIsBelievingSettings
+  autocmd!
+
+  autocmd FileType ruby nmap <buffer> <leader><Enter> <Plug>(seeing-is-believing-mark-and-run)
+  autocmd FileType ruby xmap <buffer> <leader><Enter> <Plug>(seeing-is-believing-mark-and-run)
+
+  autocmd FileType ruby nmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+  autocmd FileType ruby xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+  autocmd FileType ruby imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+
+  autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
+  autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing-is-believing-run)
+augroup END
+
+
+if has('nvim')
+	" show effects of commands (e.g. :subsitute) incrementally
+	set inccommand=nosplit
+endif
+
+
+" highlightedyank
+let g:highlightedyank_highlight_duration = 200
+highlight HighlightedyankRegion cterm=reverse gui=reverse
+
+
+" search underlying word without jumping (and keep jumplist)
+nnoremap * :keepjumps normal! mi*`i<CR>
