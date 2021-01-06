@@ -35,6 +35,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 "Plug 'inkarkat/vim-EnhancedJumps' " WTF broken?
+" Plug 'romainl/vim-qf' " steals focus
 
 Plug 'vim-ruby/vim-ruby'
 " Plug 'lucapette/vim-ruby-doc' " unusable in TUI: https://github.com/lucapette/vim-ruby-doc/issues/8
@@ -170,7 +171,8 @@ nnoremap <silent> <leader>m :silent :set nu!<CR>
 nnoremap <silent> <leader>l :silent :set list!<CR>
 
 " run makeprg
-nnoremap <leader>b :Make %<CR>
+nnoremap ~<CR> :Make %<CR>
+"nnoremap <leader>b :Make %<CR>
 "nnoremap <leader>B :Make<CR>
 "nnoremap <silent> <leader>r :Dispatch<CR>
 " NOTE: Using the mappings from Dispatch instead. See :h dispatch-maps
@@ -246,7 +248,7 @@ hi TabLineSel ctermfg=darkyellow cterm=bold,reverse
 "hi Folded ctermfg=yellow ctermbg=none cterm=underline
 "hi MatchParen ctermbg=darkyellow ctermfg=grey cterm=none,bold
 hi MatchParen ctermfg=darkmagenta ctermbg=none
-hi link QuickFixLine ErrorMsg
+hi link QuickFixLine none
 
 " show extra white spaces as errors, but not while typing
 hi link ExtraWhiteSpace ErrorMsg
@@ -258,6 +260,28 @@ augroup ExtraWhitespace
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
   autocmd BufWinLeave * call clearmatches()
 augroup END
+
+augroup QuickFix
+  au!
+  " don't highlight extra whitespaces
+  autocmd BufWinEnter quickfix match ExtraWhitespace ''
+
+  au FileType qf call AdjustWindowHeight(8, 16)
+  hi CursorLine ctermbg=black
+  au FileType qf set cursorline
+
+  au WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
+
+  " disable statusline
+  autocmd BufWinEnter quickfix setlocal laststatus=0
+
+  " exclude from :ls and buffer navigation like [b and ]b
+  autocmd BufWinEnter quickfix set nobuflisted
+augroup END
+
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
 
 "hi DiffAdd        ctermfg=darkgreen ctermbg=none
 "hi DiffChange     ctermfg=none ctermbg=none

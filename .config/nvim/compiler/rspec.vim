@@ -21,16 +21,23 @@ CompilerSet makeprg=bundle\ exec\ rspec
 
 
 CompilerSet errorformat=
+    \\ \ \ \ \ %\\+\#\ %f:%l:%m,
+    \\#\ %f:%l:%m,
     \%f:%l:\ %tarning:\ %m,
-    \%f:%l:%t:%m,
-    \%E%.%#:in\ `load':\ %f:%l:%m,
-    \%E%f:%l:in\ `%*[^']':\ %m,
-    \%-Z\ \ \ \ \ %\\+\#\ %f:%l:%.%#,
-    \%E\ \ \ \ \ Failure/Error:\ %m,
-    \%E\ \ \ \ \ Failure/Error:,
-    \%C\ \ \ \ \ %m,
-    \%C%\\s%#,
-    \%-G%.%#
+    \%f:%l:%t:%m
+
+" original
+" CompilerSet errorformat=
+"     \%f:%l:\ %tarning:\ %m,
+"     \%f:%l:%t:%m,
+"     \%E%.%#:in\ `load':\ %f:%l:%m,
+"     \%E%f:%l:in\ `%*[^']':\ %m,
+"     \%-Z\ \ \ \ \ %\\+\#\ %f:%l:%.%#,
+"     \%E\ \ \ \ \ Failure/Error:\ %m,
+"     \%E\ \ \ \ \ Failure/Error:,
+"     \%C\ \ \ \ \ %m,
+"     \%C%\\s%#,
+"     \%-G%.%#
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
