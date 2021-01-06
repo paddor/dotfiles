@@ -495,3 +495,9 @@ highlight HighlightedyankRegion cterm=reverse gui=reverse
 
 " search underlying word without jumping (and keep jumplist)
 nnoremap * :keepjumps normal! mi*`i<CR>
+
+
+" show highlighting group used under cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
