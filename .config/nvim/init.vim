@@ -226,7 +226,8 @@ colorscheme solarized
 "hi clear Search
 "hi Search cterm=reverse
 "hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
-hi Search cterm=bold ctermbg=darkcyan ctermfg=black
+"hi Search cterm=bold ctermbg=darkcyan ctermfg=black
+hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
 " hi Search cterm=bold ctermbg=darkyellow ctermfg=black
 "hi Search cterm=reverse ctermbg=magenta ctermfg=magenta
 "hi IncSearch cterm=underline,reverse
