@@ -460,6 +460,11 @@ augroup END
 " 	set termguicolors " UGLY
 " endif
 
+augroup RubyTemplates
+  au!
+  autocmd BufNewFile,BufRead *.rb.template set ft=ruby
+augroup END
+
 
 " Enable seeing-is-believing mappings only for Ruby
 augroup seeingIsBelievingSettings
