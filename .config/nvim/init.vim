@@ -66,6 +66,7 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'kassio/neoterm'
 Plug 'hwartig/vim-seeing-is-believing'
 
+Plug 'dag/vim-fish'
 
 " Initialize plugin system
 call plug#end()
@@ -92,6 +93,11 @@ endif
 augroup TwoSpacesAsTab
   autocmd!
   autocmd Filetype cpp,vim set ts=2 sw=2 et
+augroup END
+
+augroup ShellScriptTabWidth
+  au!
+  autocmd FileType sh,fish set ts=4 sw=4
 augroup END
 
 
