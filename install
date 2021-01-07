@@ -24,4 +24,9 @@ done
 
 [ -e ~/.vimrc ] || echo ln -s  ~/.config/nvim/init.vim ~/.vimrc
 
+[ -d ~/.nvim-tmp/backup ] || echo mkdir -p ~/.nvim-tmp/backup
+[ -d ~/.nvim-tmp/swap   ] || echo mkdir -p ~/.nvim-tmp/swap
+[ -d ~/.vim-tmp/backup  ] || echo mkdir -p ~/.vim-tmp/backup
+[ -d ~/.vim-tmp/swap    ] || echo mkdir -p ~/.vim-tmp/swap
+
 # vim:ft=sh
