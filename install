@@ -13,9 +13,12 @@ do
 	[ $f = install    ] && continue
 	[ $f = .gitignore ] && continue
 
-	dir=`dirname $f`
-	[ $dir = . ] || echo mkdir -p ~/$dir
-	echo $install $f ~/$f
+	if ! cmp -s $f ~/$f
+	then
+		dir=`dirname $f`
+		[ -d ~/$dir ] || echo mkdir -p ~/$dir
+		echo $install $f ~/$f
+	fi
 done
 
 
