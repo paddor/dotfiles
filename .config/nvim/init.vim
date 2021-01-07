@@ -208,13 +208,14 @@ augroup END
 set modelines=5
 "set cursorline " highlight current line
 
-"set list
-"set listchars=tab:>-,trail:^,eol:$
-"set listchars=tab:>-,trail:_,eol:$
-"set listchars=tab:>-,eol:$
-set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set fillchars="stl:,stlnc:,vert:|,fold:-,diff:-"
-set showbreak=↪
+if &encoding == "utf-8"
+  set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+  set showbreak=↪
+else
+  set listchars=tab:-->,eol:$,nbsp:~,trail:_,
+  let &showbreak='> '
+endif
 
 
 " don't treat "-" as a word character
