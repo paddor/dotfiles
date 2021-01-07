@@ -1,4 +1,9 @@
-function vi; vim $argv; end
+function vi; nvim $argv; end
+
+if test (uname) = 'Darwin'
+	# system VIM is broken
+	function vim; nvim $argv; end
+end
 
 function g; git $argv; end
 function gs; g s $argv; end
@@ -21,8 +26,10 @@ function bede; env DEV_ENV=true bundle exec $argv; end
 
 
 
-function pbcopy;  xsel --clipboard --input; end
-function pbpaste; xsel --clipboard --output; end
+if test (uname) != 'Darwin'
+	function pbcopy;  xsel --clipboard --input; end
+	function pbpaste; xsel --clipboard --output; end
+end
 
 # alias fd=fdfind so that fzf-plugin for fish works
 function fd; fdfind $argv; end
