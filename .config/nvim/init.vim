@@ -492,7 +492,8 @@ endif
 
 " highlightedyank
 let g:highlightedyank_highlight_duration = 200
-highlight HighlightedyankRegion cterm=reverse gui=reverse
+"highlight HighlightedyankRegion cterm=reverse gui=reverse
+highlight HighlightedyankRegion ctermbg=3 ctermfg=black cterm=bold "gui=reverse
 
 
 " search underlying word without jumping (and keep jumplist)
