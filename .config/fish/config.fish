@@ -1,5 +1,5 @@
 # chruby
-if which chruby >/dev/null ^/dev/null
+if test -e /usr/local/share/chruby/chruby.fish
 	set -gx CHRUBY_ROOT /usr/local/
 	source /usr/local/share/chruby/chruby.fish
 	chruby 3.0
