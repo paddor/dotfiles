@@ -8,7 +8,7 @@ endsnippet
 
 snippet descm
 describe '#${1:method}' do
-  ${0:pending 'Not implemented'}
+  ${0}
 end
 endsnippet
 
@@ -31,4 +31,10 @@ endsnippet
 
 snippet @yr
 @yieldreturn [${1:type}]
+endsnippet
+
+snippet asr
+assert_raises ${1:StandardError} do
+  ${0}
+end
 endsnippet
