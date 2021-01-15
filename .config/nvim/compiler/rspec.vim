@@ -1,9 +1,5 @@
 " Vim compiler file
 " Language:		RSpec
-" Maintainer:		Tim Pope <vimNOSPAM@tpope.org>
-" URL:			https://github.com/vim-ruby/vim-ruby
-" Release Coordinator:	Doug Kearns <dougkearns@gmail.com>
-" Last Change:		2018 Aug 07
 
 if exists("current_compiler")
   finish
@@ -17,7 +13,7 @@ endif
 let s:cpo_save = &cpo
 set cpo-=C
 
-CompilerSet makeprg=bundle\ exec\ rspec
+CompilerSet makeprg=bundle\ exec\ rspec\ -ff
 
 
 CompilerSet errorformat=

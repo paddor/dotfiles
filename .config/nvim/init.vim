@@ -177,7 +177,10 @@ nnoremap <silent> <leader>m :silent :set nu!<CR>
 nnoremap <silent> <leader>l :silent :set list!<CR>
 
 " run makeprg
-nnoremap ~<CR> :Make %<CR>
+"nnoremap ~<CR> :Make %<CR>
+" nnoremap `<CR> :Dispatch -compiler=rspec_ff<CR>
+" nnoremap ~<CR> :Dispatch -compiler=rspec<CR>
+nnoremap ~<CR> :Dispatch bundle exec rspec %<CR>
 "nnoremap <leader>b :Make %<CR>
 "nnoremap <leader>B :Make<CR>
 "nnoremap <silent> <leader>r :Dispatch<CR>
