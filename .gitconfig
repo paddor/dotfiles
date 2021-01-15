@@ -1,5 +1,7 @@
 [include]
 	path = ~/.gitconfig_private
+[core]
+	pager = delta
 [help]
 	#autocorrect = -1
 	#format = web
@@ -42,13 +44,18 @@
 #	log = diff-highlight | less
 #	show = diff-highlight | less
 #	diff = diff-highlight | less
-	log = diff-so-fancy | less
-	show = diff-so-fancy | less
-	diff = diff-so-fancy | less
+
+#	log = diff-so-fancy | less
+#	show = diff-so-fancy | less
+#	diff = diff-so-fancy | less
+
+	pager = delta
 
 # breaks coloring in `git add -p` :-(
 #[interactive]
 #	diffFilter = diff-highlight
+[interactive]
+    diffFilter = delta --color-only
 
 [core]
 	attributesfile = ~/.gitattributes
@@ -75,3 +82,30 @@
 	rebase = false
 [init]
 	templatedir = ~/.git_template
+[delta]
+	features = unobtrusive-line-numbers decorations
+	#side-by-side = true
+	line-numbers = true
+	whitespace-error-style = 22 reverse
+	minus-style = red #bold ul "#ffeeee"
+	minus-style = syntax auto
+	; minus-emph-style = syntax auto
+	; minus-style = syntax bold auto
+	; plus-style = syntax blue
+	plus-emph-style = syntax green # better readability with Solarized
+
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+
+[delta "unobtrusive-line-numbers"]
+    line-numbers = true
+    line-numbers-minus-style = "#444444"
+    line-numbers-zero-style = "#444444"
+    line-numbers-plus-style = "#444444"
+    line-numbers-left-format = "{nm:>4}┊"
+    line-numbers-right-format = "{np:>4}│"
+    line-numbers-left-style = blue
+    line-numbers-right-style = blue
