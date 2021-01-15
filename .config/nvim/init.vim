@@ -29,11 +29,18 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleVCS', 'NERDTreeFocus', 'NERDTreeFind'] }
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleVCS', 'NERDTreeFocus', 'NERDTreeFind'] }
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-hijack.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'zackhsi/fzf-tags'
 "Plug 'inkarkat/vim-EnhancedJumps' " WTF broken?
 " Plug 'romainl/vim-qf' " steals focus
 
@@ -67,6 +74,7 @@ Plug 'kassio/neoterm'
 Plug 'hwartig/vim-seeing-is-believing'
 
 Plug 'dag/vim-fish'
+Plug 'vifm/vifm.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -92,12 +100,17 @@ endif
 " tabstop
 augroup TwoSpacesAsTab
   autocmd!
-  autocmd Filetype cpp,vim set ts=2 sw=2 et
+  autocmd Filetype cpp,vim,json set ts=2 sw=2 et
 augroup END
 
 augroup ShellScriptTabWidth
   au!
   autocmd FileType sh,fish set ts=4 sw=4
+augroup END
+
+augroup RubyCustomConfigs
+  au!
+  autocmd FileType ruby set tw=118 iskeyword-=#
 augroup END
 
 
@@ -132,19 +145,21 @@ set title
 set ignorecase smartcase
 
 " start scrolling 3 lines before horizontal window border
-"set scrolloff=1
+"set scolloff=1
 
 " short messages
 set shortmess=aoOtTI
 
 " write swap file every 100 characters
-set updatecount=50
+" set updatecount=50
 
 " automatically save buffer on :next or the like
 set autowrite
 noremap <Esc> :update<CR>
 
-set updatetime=4000
+" time to wait after moving cursor before writing swap file and
+" firing CursorHold event
+set updatetime=500
 
 " faster scrolling with ^e ^y
 nnoremap <C-e> 3<C-e>
@@ -195,17 +210,33 @@ nnoremap ~<CR> :Dispatch bundle exec rspec %<CR>
 inoremap <silent> <Esc> <Esc>`^
 
 " NERDTree
-let NERDTreeHijackNetrw=1
-let NERDTreeMinimalMenu=1
-let NERDTreeMinimalUI=1
-nnoremap <leader>t :NERDTreeToggleVCS<CR>
-nnoremap - :NERDTreeFind<CR>
-augroup NERDTreeConfig
+" let NERDTreeHijackNetrw=1
+" let NERDTreeMinimalMenu=1
+" let NERDTreeMinimalUI=1
+" nnoremap <leader>t :NERDTreeToggleVCS<CR>
+" nnoremap - :NERDTreeFind<CR>
+"augroup NERDTreeConfig
+"  au!
+"  " open NERDTree when no file args given
+"  "autocmd vimenter * if !argc() | NERDTree | endif
+"  " close when NERDTree is last window
+"  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"augroup END
+
+nnoremap <leader>t :Fern . -drawer<CR>
+nnoremap - :execute ':Fern ' . expand('%:p:h') . ' -drawer -reveal=%'<CR>
+" use Nerdfont
+let g:fern#renderer = "nerdfont"
+
+" Disable listing ignored files/directories
+let g:fern_git_status#disable_ignored = 1
+
+augroup FernConfig
   au!
-  " open NERDTree when no file args given
-  "autocmd vimenter * if !argc() | NERDTree | endif
-  " close when NERDTree is last window
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  au FileType fern nnoremap <buffer>q :q<CR>
+  au FileType fern nnoremap <buffer><leader>t :q<CR>
+  au FileType fern nnoremap <buffer>- :q<CR>
+  au FileType fern call glyph_palette#apply()
 augroup END
 
 set modelines=5
@@ -222,10 +253,15 @@ endif
 
 
 " don't treat "-" as a word character
-set iskeyword-=-
+" set iskeyword-=-
+augroup CustomKeywordChars
+  au!
+  autocmd BufNewFile,BufRead * setlocal iskeyword-=-
+augroup END
 
 set bg=dark
 colorscheme solarized
+
 
 "hi clear Search
 "hi Search cterm=reverse
@@ -257,6 +293,7 @@ hi TabLine ctermfg=darkyellow ctermbg=black cterm=none
 "hi TabLineSel ctermfg=darkcyan ctermbg=black cterm=bold
 hi TabLineSel ctermfg=darkyellow cterm=bold,reverse
 "hi Folded ctermfg=yellow ctermbg=none cterm=underline
+hi Folded ctermfg=green ctermbg=none cterm=none
 "hi MatchParen ctermbg=darkyellow ctermfg=grey cterm=none,bold
 hi MatchParen ctermfg=darkmagenta ctermbg=none
 hi link QuickFixLine none
@@ -334,7 +371,7 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <F8> :TagbarToggle<CR>
 nnoremap <leader>T :TagbarToggle<CR>
 let g:tagbar_position='topleft vertical'
-"let g:tagbar_sort = 0
+let g:tagbar_sort = 0
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 
@@ -345,7 +382,10 @@ nnoremap <m-f> :Files<CR>
 autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 nnoremap gb :Buffers<CR>
 " search for word under cursor with :Ag
-nnoremap <leader>A "ayiw:Ag <c-R>a<CR>
+nnoremap <leader>A "ayiw:Rg <c-R>a<CR>
+nmap <C-]> <Plug>(fzf_tags)
+
+
 
 " fast buffer listing and switching
 " vanilla:
@@ -507,3 +547,10 @@ nnoremap * :keepjumps normal! mi*`i<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+
+" exchanging hunks in diffs
+nnoremap g> :diffput<CR>
+xnoremap g> :diffput<CR>
+nnoremap g< :diffget<CR>
+xnoremap g< :diffget<CR>
