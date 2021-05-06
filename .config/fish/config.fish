@@ -34,3 +34,9 @@ set -g man_blink -o red
 set -g man_bold -o green
 set -g man_standout -b black 93a1a1
 set -g man_underline -u 93a1a1
+
+
+# remove SSH: prefix from prompt if connecting from Mac
+if [ (string split -f1 ' ' $SSH_CLIENT) = (string split -f1 ' ' (getent hosts mac.shared)) ]
+	set --erase SSH_CLIENT
+end
