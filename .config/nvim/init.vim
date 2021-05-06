@@ -102,7 +102,7 @@ endif
 " tabstop
 augroup TwoSpacesAsTab
   autocmd!
-  autocmd Filetype cpp,vim,json set ts=2 sw=2 et
+  autocmd Filetype cpp,vim,json,yaml set ts=2 sw=2 et
 augroup END
 
 augroup ShellScriptTabWidth
