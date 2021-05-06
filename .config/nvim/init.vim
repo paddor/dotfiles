@@ -355,7 +355,6 @@ nmap ga <Plug>(EasyAlign)
 
 
 " TagBar
-nnoremap <F8> :TagbarToggle<CR>
 nnoremap <leader>T :TagbarToggle<CR>
 let g:tagbar_position='topleft vertical'
 let g:tagbar_sort = 0
