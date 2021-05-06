@@ -109,3 +109,5 @@
     line-numbers-right-format = "{np:>4}│"
     line-numbers-left-style = blue
     line-numbers-right-style = blue
+[log]
+	date = local
