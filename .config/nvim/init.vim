@@ -29,15 +29,17 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 
-" Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleVCS', 'NERDTreeFocus', 'NERDTreeFind'] }
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/glyph-palette.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/fern-hijack.vim'
+
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleVCS', 'NERDTreeFocus', 'NERDTreeFind'] }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'lambdalisue/fern.vim'
+" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" Plug 'lambdalisue/nerdfont.vim'
+" Plug 'lambdalisue/glyph-palette.vim'
+" Plug 'lambdalisue/fern-git-status.vim'
+" Plug 'lambdalisue/fern-hijack.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/nerd-fonts'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'zackhsi/fzf-tags'
@@ -210,33 +212,17 @@ nnoremap ~<CR> :Dispatch bundle exec rspec %<CR>
 inoremap <silent> <Esc> <Esc>`^
 
 " NERDTree
-" let NERDTreeHijackNetrw=1
-" let NERDTreeMinimalMenu=1
-" let NERDTreeMinimalUI=1
-" nnoremap <leader>t :NERDTreeToggleVCS<CR>
-" nnoremap - :NERDTreeFind<CR>
-"augroup NERDTreeConfig
-"  au!
-"  " open NERDTree when no file args given
-"  "autocmd vimenter * if !argc() | NERDTree | endif
-"  " close when NERDTree is last window
-"  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"augroup END
-
-nnoremap <leader>t :Fern . -drawer<CR>
-nnoremap - :execute ':Fern ' . expand('%:p:h') . ' -drawer -reveal=%'<CR>
-" use Nerdfont
-let g:fern#renderer = "nerdfont"
-
-" Disable listing ignored files/directories
-let g:fern_git_status#disable_ignored = 1
-
-augroup FernConfig
-  au!
-  au FileType fern nnoremap <buffer>q :q<CR>
-  au FileType fern nnoremap <buffer><leader>t :q<CR>
-  au FileType fern nnoremap <buffer>- :q<CR>
-  au FileType fern call glyph_palette#apply()
+let NERDTreeHijackNetrw=1
+let NERDTreeMinimalMenu=1
+let NERDTreeMinimalUI=1
+nnoremap <leader>t :NERDTreeToggleVCS<CR>
+nnoremap - :NERDTreeFind<CR>
+augroup NERDTreeConfig
+ au!
+ " open NERDTree when no file args given
+ autocmd vimenter * if !argc() | NERDTree | endif
+ " close when NERDTree is last window
+ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
 set modelines=5
