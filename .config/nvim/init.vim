@@ -221,8 +221,8 @@ nnoremap <leader>t :NERDTreeToggleVCS<CR>
 nnoremap - :NERDTreeFind<CR>
 augroup NERDTreeConfig
  au!
- " open NERDTree when no file args given
- autocmd vimenter * if !argc() | NERDTree | endif
+ " open NERDTree when no file args given (fails because of lazy-loading)
+ " autocmd vimenter * if !argc() | NERDTree | endif
  " close when NERDTree is last window
  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
