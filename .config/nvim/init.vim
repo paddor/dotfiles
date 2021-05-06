@@ -72,8 +72,8 @@ Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
 Plug 'itchyny/lightline.vim'
 Plug 'thoughtbot/vim-rspec'
 
-Plug 'kassio/neoterm'
-Plug 'hwartig/vim-seeing-is-believing'
+" Plug 'kassio/neoterm' " defines ,tt which adds timeout to , command
+" Plug 'hwartig/vim-seeing-is-believing'
 
 Plug 'dag/vim-fish'
 Plug 'vifm/vifm.vim'
