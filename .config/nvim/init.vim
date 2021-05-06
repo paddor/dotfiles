@@ -112,7 +112,7 @@ augroup END
 
 augroup RubyCustomConfigs
   au!
-  autocmd FileType ruby set tw=118 iskeyword-=#
+  autocmd FileType ruby set tw=118 iskeyword-=#-
 augroup END
 
 
@@ -240,10 +240,10 @@ endif
 
 " don't treat "-" as a word character
 " set iskeyword-=-
-augroup CustomKeywordChars
-  au!
-  autocmd BufNewFile,BufRead * setlocal iskeyword-=-
-augroup END
+" augroup CustomKeywordChars
+  " au!
+  " autocmd BufNewFile,BufRead * setlocal iskeyword-=-
+" augroup END
 
 set bg=dark
 colorscheme solarized
