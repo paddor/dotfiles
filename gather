@@ -3,7 +3,7 @@
 
 cd `dirname $0`
 
-if [ -z "$(which git)" ]
+if [ -z "$(command -v git)" ]
 then
 	echo "git not found"
 	exit 1
