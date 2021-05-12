@@ -71,12 +71,15 @@ Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
 Plug 'itchyny/lightline.vim'
 Plug 'thoughtbot/vim-rspec'
+Plug 'mechatroner/rainbow_csv'
 
 " Plug 'kassio/neoterm' " defines ,tt which adds timeout to , command
 " Plug 'hwartig/vim-seeing-is-believing'
 
 Plug 'dag/vim-fish'
 Plug 'vifm/vifm.vim'
+
+Plug 'joukevandermaas/vim-ember-hbs'
 
 " Initialize plugin system
 call plug#end()
