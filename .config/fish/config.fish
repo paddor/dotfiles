@@ -37,6 +37,8 @@ set -g man_underline -u 93a1a1
 
 
 # remove SSH: prefix from prompt if connecting from Mac
-if [ (string split -f1 ' ' $SSH_CLIENT) = (string split -f1 ' ' (getent hosts mac.shared)) ]
-	set --erase SSH_CLIENT
+if [ -n "$SSH_CLIENT" ]
+	if [ (string split -f1 ' ' $SSH_CLIENT) = (string split -f1 ' ' (getent hosts mac.shared)) ]
+		set --erase SSH_CLIENT
+	end
 end
