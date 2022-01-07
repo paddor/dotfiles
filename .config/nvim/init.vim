@@ -487,9 +487,15 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 nnoremap <leader>i :IndentLinesToggle<CR>
 
 " don't insert comment leader when hitting o/O
-augroup FormatOptions
+augroup FormatOptionO
   au!
   autocmd BufNewFile,BufRead * setlocal formatoptions-=o
+augroup END
+
+" use indent of 2nd paragraph line
+augroup FormatOption2
+  au!
+  autocmd BufNewFile,BufRead * setlocal formatoptions+=2
 augroup END
 
 
