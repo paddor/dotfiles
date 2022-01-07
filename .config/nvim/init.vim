@@ -51,14 +51,14 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/matchit.zip'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 Plug 'glts/vim-textobj-comment'
 
 Plug 'glts/vim-magnum' " for vim-radical
 Plug 'glts/vim-radical'
 
 "Plug 'svermeulen/vim-easyclip' " too much. Better solution: vim-subversive
-Plug 'svermeulen/vim-subversive'
+" Plug 'svermeulen/vim-subversive'
 Plug 'junegunn/vim-easy-align'
 Plug 'AndrewRadev/splitjoin.vim'
 
