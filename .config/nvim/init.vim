@@ -16,6 +16,7 @@ endif
 if !has('nvim')
 	Plug 'tpope/vim-sensible'
 endif
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
