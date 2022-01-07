@@ -220,6 +220,7 @@ inoremap <silent> <Esc> <Esc>`^
 let NERDTreeHijackNetrw=1
 let NERDTreeMinimalMenu=1
 let NERDTreeMinimalUI=1
+let NERDTreeQuitOnOpen=1
 nnoremap <leader>t :NERDTreeToggleVCS<CR>
 nnoremap - :NERDTreeFind<CR>
 augroup NERDTreeConfig
