@@ -84,6 +84,7 @@
 	rebase = false
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = main
 [delta]
 	features = unobtrusive-line-numbers decorations
 	#side-by-side = true
