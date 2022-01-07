@@ -2,7 +2,7 @@
 if test -e /usr/local/share/chruby/chruby.fish
 	set -gx CHRUBY_ROOT /usr/local/
 	source /usr/local/share/chruby/chruby.fish
-	chruby 3.0.1
+	chruby 2.7.3
 end
 
 # personal executables
