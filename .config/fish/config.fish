@@ -10,6 +10,7 @@ set -gx PATH ~/.local/bin ~/go/bin $PATH
 
 set -x EDITOR vim
 set -x LESS "-rFX"
+set -x ROADSTER_LOG_COLORSCHEME 'SOLARIZED'
 
 # no greeting
 function fish_greeting
