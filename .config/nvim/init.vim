@@ -243,6 +243,8 @@ else
   let &showbreak='> '
 endif
 
+set linebreak " nicer line wrapping
+
 
 " don't treat "-" as a word character
 " set iskeyword-=-
