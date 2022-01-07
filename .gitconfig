@@ -66,7 +66,6 @@
 	br = branch
 	l  = log --decorate --graph
 	g  = grep
-	grpe  = grep
 	s  = status --short --branch
 	d  = diff --relative
 	dc = diff --relative --cached
@@ -78,6 +77,9 @@
 	up = pull --rebase -v
 	pv = push -v
 	ctags = !.git/hooks/ctags
+	# typos
+	grpe = grep
+	shwo = show
 [pull]
 	rebase = false
 [init]
