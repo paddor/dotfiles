@@ -186,7 +186,7 @@ map <S-left> :tabprev<return>
 
 " nice leader key to bind custom actions
 "let mapleader = ","
-set timeoutlen=700 " ms
+set timeoutlen=500 " ms
 
 " stop highlighting search results
 nnoremap <silent> <leader>n :silent :nohlsearch<CR>
