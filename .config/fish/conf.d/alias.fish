@@ -21,9 +21,9 @@ function gpv; g pv $argv; end
 
 function irb; pry $argv; end
 function be; bundle exec $argv; end
-
 function bede; env DEV_ENV=true bundle exec $argv; end
 
+function le; env less $argv; end
 
 
 if test (uname) != 'Darwin'
