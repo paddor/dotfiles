@@ -33,3 +33,12 @@ end
 
 # alias fd=fdfind so that fzf-plugin for fish works
 function fd; fdfind $argv; end
+
+function projdiff
+	set a $argv[2]
+	set b $argv[1]/$argv[2]
+
+	echo vimdiff $a $b
+	diff --brief --report-identical-files --ignore-blank-lines $a $b && return
+	vimdiff $a $b
+end
