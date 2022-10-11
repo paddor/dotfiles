@@ -41,6 +41,7 @@ function projdiff
 	echo vimdiff $a $b
 	diff --brief --report-identical-files --ignore-blank-lines $a $b && return
 	vimdiff $a $b
+end
 
 function reload_chruby
 	source /usr/local/share/chruby/chruby.fish
