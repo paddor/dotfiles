@@ -1,7 +1,12 @@
 #!/bin/sh
 set -e
 PATH="/usr/local/bin:$PATH"
-trap 'rm -f "$$.tags"' EXIT
-git ls-files | \
-  ctags --tag-relative -L - -f"$$.tags" --languages=-javascript,sql
-mv "$$.tags" "tags"
+
+if [ -x update_tags ]
+then
+	./update_tags
+else
+	trap 'rm -f "$$.tags"' EXIT
+	git ls-files | ctags --tag-relative -L - -f"$$.tags" --languages=-javascript,sql
+	mv "$$.tags" "tags"
+fi

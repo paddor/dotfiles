@@ -41,4 +41,19 @@ function projdiff
 	echo vimdiff $a $b
 	diff --brief --report-identical-files --ignore-blank-lines $a $b && return
 	vimdiff $a $b
+
+function reload_chruby
+	source /usr/local/share/chruby/chruby.fish
+end
+
+function install_ruby
+    # ruby-install --no-install-deps ruby $argv[1] -- CC=clang-13 --enable-shared --with-rdoc=ri --with-jemalloc --with-openssl-dir=/usr/local/ssl CFLAGS="-O0 -g"
+    ruby-install --no-install-deps ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc --with-openssl-dir=/usr/local/ssl CFLAGS="-O0 -g"
+    # ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc CFLAGS="-O0 -g"
+    echo "NOTE: Run update_ruby_tags after activating the new Ruby."
+end
+
+function update_ruby_tags
+    which ctags
+    ctags --verbose --recurse --language-force=C --extras --kinds-C=+p -f $RUBY_ROOT/tags $RUBY_ROOT/include
 end

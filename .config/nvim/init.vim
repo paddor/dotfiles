@@ -368,6 +368,13 @@ let g:tagbar_sort = 0
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 
+" tags of current Ruby
+set tags+=$RUBY_ROOT/tags
+
+" update systags with: ctags -R -f ~/.config/nvim/systags /usr/include /usr/local/include
+set tags+=~/.config/nvim/systags
+
+
 " FZF
 nnoremap <m-g> :GFiles<CR>
 nnoremap <m-f> :Files<CR>
