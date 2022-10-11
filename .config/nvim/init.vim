@@ -116,7 +116,7 @@ augroup END
 
 augroup RubyCustomConfigs
   au!
-  autocmd FileType ruby set tw=118 iskeyword-=#-
+  autocmd FileType ruby set tw=118 iskeyword-=#- iskeyword+=*
 augroup END
 
 
