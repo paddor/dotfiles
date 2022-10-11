@@ -49,11 +49,13 @@ Plug 'zackhsi/fzf-tags'
 
 Plug 'vim-ruby/vim-ruby'
 " Plug 'lucapette/vim-ruby-doc' " unusable in TUI: https://github.com/lucapette/vim-ruby-doc/issues/8
-Plug 'vim-scripts/matchit.zip'
+" Plug 'vim-scripts/matchit.zip'
+Plug 'andymass/vim-matchup'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 " Plug 'justinmk/vim-sneak'
 Plug 'glts/vim-textobj-comment'
+Plug 'preservim/vim-textobj-quote'
 
 Plug 'glts/vim-magnum' " for vim-radical
 Plug 'glts/vim-radical'
@@ -176,7 +178,7 @@ map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
 " better % command
-runtime macros/matchit.vim " and needed for textobj-rubyblock
+" runtime macros/matchit.vim " and needed for textobj-rubyblock
 
 " moving between tabs
 " map <S-L> :tabn<return>
@@ -252,6 +254,16 @@ set linebreak " nicer line wrapping
   " au!
   " autocmd BufNewFile,BufRead * setlocal iskeyword-=-
 " augroup END
+
+
+augroup textobj_quote
+  autocmd!
+  autocmd FileType ruby call textobj#quote#init({'educate': 0})
+augroup END
+
+
+
+
 
 set bg=dark
 colorscheme solarized
