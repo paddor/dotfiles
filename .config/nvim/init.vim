@@ -448,6 +448,23 @@ tnoremap <Esc> <C-\><C-n>
 let $DEV_ENV='true'
 
 
+
+" just display popup-menu if there are multiple matches, don't insert first match
+" set completeopt+=longest
+
+" YouCompleteMe
+" augroup CComplete
+"   autocmd!
+"   autocmd FileType c let g:ycm_collect_identifiers_from_tags_files = 1
+" augroup END
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_add_preview_to_completeopt = 0
+" let g:ycm_clangd_args = ['--all-scopes-completion']
+
+
+nnoremap Y yg_
+
+
 " vim-ruby
 augroup RubyComplete
   autocmd!
