@@ -17,7 +17,7 @@ do
 	then
 		dir=`dirname $f`
 		[ -d ~/$dir ] || echo mkdir -p ~/$dir
-		echo "$install $f ~/$f # vi -d $f ~/$f"
+		echo "$install $f ~/$f # vi -d ~/$f $f"
 	fi
 done
 
