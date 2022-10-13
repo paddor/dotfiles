@@ -48,9 +48,15 @@ function reload_chruby
 end
 
 function install_ruby
-    # ruby-install --no-install-deps ruby $argv[1] -- CC=clang-13 --enable-shared --with-rdoc=ri --with-jemalloc --with-openssl-dir=/usr/local/ssl CFLAGS="-O0 -g"
+	# OpenSSL 1.1:
+	# cd /usr/local/src
+	# sudo wget openssl...
+	# sudo chown -R roadster:roadster openssl...
+	# cd openssl...
+	# ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl
+	# make && make install_sw
+
     ruby-install --no-install-deps ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc --with-openssl-dir=/usr/local/ssl CFLAGS="-O0 -g"
-    # ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc CFLAGS="-O0 -g"
     echo "NOTE: Run update_ruby_tags after activating the new Ruby."
 end
 
