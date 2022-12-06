@@ -584,11 +584,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
-" exchanging hunks in diffs
-nnoremap g> :diffput<CR>
-xnoremap g> :diffput<CR>
-nnoremap g< :diffget<CR>
-xnoremap g< :diffget<CR>
+" diffput for selected lines (to delete, just use D)
+vnoremap X :diffput<CR>
 
 
 let g:lightline = {
