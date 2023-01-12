@@ -1,9 +1,6 @@
-# chruby
-if test -e /usr/local/share/chruby/chruby.fish
-	set -gx CHRUBY_ROOT /usr/local/
-	source /usr/local/share/chruby/chruby.fish
-	chruby 2.7.3
-end
+# chruby 1.0.0
+set fish_function_path /usr/local/share/fish/vendor_functions.d $fish_function_path
+#chruby 3.2
 
 # personal executables
 set -gx PATH ~/.local/bin ~/go/bin $PATH

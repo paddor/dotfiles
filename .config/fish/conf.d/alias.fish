@@ -43,10 +43,6 @@ function projdiff
 	vimdiff $a $b
 end
 
-function reload_chruby
-	source /usr/local/share/chruby/chruby.fish
-end
-
 function install_ruby
 	# OpenSSL 1.1:
 	# cd /usr/local/src
