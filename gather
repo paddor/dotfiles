@@ -21,7 +21,6 @@ git ls-files | while read f
 do
 	[ $f = gather     ] && continue
 	[ $f = install    ] && continue
-	[ $f = .gitignore ] && continue
 
 	cp ~/$f $f
 done
