@@ -1,6 +1,6 @@
 # chruby 1.0.0
 set fish_function_path /usr/local/share/fish/vendor_functions.d $fish_function_path
-#chruby 3.2
+chruby 3.2
 
 # personal executables
 set -gx PATH ~/.local/bin ~/go/bin $PATH
