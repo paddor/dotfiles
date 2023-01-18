@@ -22,6 +22,10 @@ if test (uname) = 'Darwin'
 end
 
 
+# NVM (needed for Ember in Overmind)
+set -gx NVM_DIR "$HOME/.nvm"
+
+
 # PostgreSQL
 set -gx PATH /usr/lib/postgresql/12/bin $PATH
 
