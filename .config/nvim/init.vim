@@ -377,7 +377,6 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <leader>T :TagbarToggle<CR>
 let g:tagbar_position='topleft vertical'
 let g:tagbar_sort = 0
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 
 " tags of current Ruby
