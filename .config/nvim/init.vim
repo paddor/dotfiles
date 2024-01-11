@@ -80,6 +80,7 @@ Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
 Plug 'itchyny/lightline.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'mechatroner/rainbow_csv'
+Plug 'vim-scripts/gsl.vim'
 
 " Plug 'kassio/neoterm' " defines ,tt which adds timeout to , command
 " Plug 'hwartig/vim-seeing-is-believing'
@@ -124,6 +125,12 @@ augroup END
 augroup RubyCustomConfigs
   au!
   autocmd FileType ruby set tw=118 ts=2 sw=2 et iskeyword-=#-
+augroup END
+
+augroup GslCustomConfigs
+  au!
+  autocmd BufRead,BufNewFile *.gsl  set filetype=gsl
+  " autocmd BufNewFile,BufRead *.rb.template set ft=ruby
 augroup END
 
 
