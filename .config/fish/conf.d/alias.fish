@@ -1,35 +1,35 @@
-function vi; nvim $argv; end
+abbr --add vi nvim
+# function vi; nvim $argv; end
 
-if test (uname) = 'Darwin'
-	# system VIM is broken
-	function vim; nvim $argv; end
-end
+# if test (uname) = 'Darwin'
+# 	# system VIM is broken
+# 	function vim; nvim $argv; end
+# end
 
-function g; git $argv; end
-function gs; g s $argv; end
-function gl; g l $argv; end
-function gg; g g $argv; end
-function gd; g d $argv; end
-function ga; g a $argv; end
-function gap; g ap $argv; end
-function gdc; g dc $argv; end
-function gc; g c -v $argv; end
-function gcm; g cm $argv; end
-function gca; g ca $argv; end
-function gup; g up $argv; end
-function gpv; g pv $argv; end
+abbr --add gs git status
+abbr --add gl git log --graph
+abbr --add gg git grep
+abbr --add gd git diff
+abbr --add ga git add
+abbr --add gap git add -p
+abbr --add gdc git diff --cached
+abbr --add gc git commit -v
+abbr --add gcm git commit -m
+abbr --add gca git commit --amend
+abbr --add gup git pull --rebase -v
+abbr --add gpv git push -v
+abbr --add gls git log --graph --stat
 
-function irb; pry $argv; end
-function be; bundle exec $argv; end
-function bede; env DEV_ENV=true bundle exec $argv; end
+abbr --add irb pry
+abbr --add be bundle exec
+abbr --add bede env DEV_ENV=true bundle exec
+abbr --add le less
+abbr --add fgfg fg
 
-function le; env less $argv; end
-
-
-if test (uname) != 'Darwin'
-	function pbcopy;  xsel --clipboard --input; end
-	function pbpaste; xsel --clipboard --output; end
-end
+# if test (uname) != 'Darwin'
+# 	function pbcopy;  xsel --clipboard --input; end
+# 	function pbpaste; xsel --clipboard --output; end
+# end
 
 # alias fd=fdfind so that fzf-plugin for fish works
 function fd; fdfind $argv; end
