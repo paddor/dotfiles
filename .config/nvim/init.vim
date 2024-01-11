@@ -123,7 +123,7 @@ augroup END
 
 augroup RubyCustomConfigs
   au!
-  autocmd FileType ruby set tw=118 iskeyword-=#- iskeyword+=*
+  autocmd FileType ruby set tw=118 ts=2 sw=2 et iskeyword-=#-
 augroup END
 
 
@@ -267,6 +267,20 @@ augroup textobj_quote
 augroup END
 
 
+" vim-surround
+" ysiW-
+let g:surround_45 = "<% \r %>"
+
+" ysiW-
+let g:surround_61 = "<%= \r %>"
+
+" vSr, yspr => do ... end " i wanna keep r for [], TODO: lookup ASCII 'd'
+" let g:surround_114 = "do\rend"
+
+" ysiWf (function)
+" csbs (foo(bar) => foo bar)
+" i_CTRL-Gsb
+" i_CTRL-GsReturnB => {\nCURSOR\n}
 
 
 
