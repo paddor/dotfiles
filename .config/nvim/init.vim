@@ -431,8 +431,9 @@ nmap <C-]> <Plug>(fzf_tags)
 set splitright
 set splitbelow
 
-" vertical split :h (help)
-cabbrev h vert to h
+" vertical split :h (help) (NOTE: makes searching for "foo h" impossible)
+" cabbrev h vert to h
+" cabbrev h h
 
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
