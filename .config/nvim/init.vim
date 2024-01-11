@@ -22,13 +22,18 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-eunuch'
+
 "Plug 'tpope/vim-vinegar' " lingering buffers in :Buffers :/
+
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-bundler'
+
+" disabled because of startup hangs when WAN is unreachable
+" Plug 'tpope/vim-rake' " 2 intrs needed
+" Plug 'tpope/vim-bundler' " 1 intrs needed
+
 " Plug 'jreybert/vimagit'
 
 
@@ -58,7 +63,7 @@ Plug 'glts/vim-textobj-comment'
 Plug 'preservim/vim-textobj-quote'
 
 Plug 'glts/vim-magnum' " for vim-radical
-Plug 'glts/vim-radical'
+Plug 'glts/vim-radical' " what's this?
 
 "Plug 'svermeulen/vim-easyclip' " too much. Better solution: vim-subversive
 " Plug 'svermeulen/vim-subversive'
@@ -80,7 +85,7 @@ Plug 'mechatroner/rainbow_csv'
 " Plug 'hwartig/vim-seeing-is-believing'
 
 Plug 'dag/vim-fish'
-Plug 'vifm/vifm.vim'
+" Plug 'vifm/vifm.vim'
 
 Plug 'joukevandermaas/vim-ember-hbs'
 
