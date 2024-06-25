@@ -1,0 +1,20 @@
+import = [
+    "~/.local/share/alacritty/themes/themes/solarized_dark.toml"
+]
+
+[shell]
+program = "/usr/local/bin/fish"
+args = ["-l"]
+
+[window]
+#startup_mode = "Maximized"
+resize_increments = true
+option_as_alt = "Both"
+#decorations = "None"
+
+[font]
+normal = { family = "Hack Nerd Font Mono", style = "Regular" }
+size = 14.0
+
+[selection]
+save_to_clipboard = true
