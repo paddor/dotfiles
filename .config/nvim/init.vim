@@ -293,6 +293,7 @@ let g:surround_61 = "<%= \r %>"
 
 
 set bg=dark
+set notermguicolors " NeoVim v0.10.0
 colorscheme solarized
 
 
@@ -316,6 +317,7 @@ hi VertSplit    cterm=none ctermfg=green ctermbg=none
 "hi LineNr ctermfg=yellow ctermbg=black cterm=none
 "hi SignColumn ctermfg=yellow ctermbg=black cterm=none
 hi Visual cterm=NONE ctermbg=darkgreen
+" hi Visual cterm=NONE ctermbg=darkyellow
 "hi Visual cterm=none ctermfg=magenta ctermbg=black
 " hi Visual cterm=reverse ctermbg=white
 hi SpecialKey ctermbg=NONE ctermfg=darkblue cterm=NONE " nbsp, space, tab and trail
@@ -329,7 +331,11 @@ hi TabLineSel ctermfg=darkyellow cterm=bold,reverse
 hi Folded ctermfg=green ctermbg=none cterm=none
 "hi MatchParen ctermbg=darkyellow ctermfg=grey cterm=none,bold
 hi MatchParen ctermfg=darkmagenta ctermbg=none
+hi String ctermfg=darkcyan
 hi link QuickFixLine none
+hi link rubyOperator Conditional " green and/or
+hi link rubyInterpolationDelimiter rubyPseudoOperator " red #{...}
+
 
 " show extra white spaces as errors, but not while typing
 hi link ExtraWhiteSpace ErrorMsg
