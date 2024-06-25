@@ -40,6 +40,7 @@
 [diff]
 	compactionHeuristic = true
 	noprefix = true
+	algorithm = histogram
 [pager]
 #	log = diff-highlight | less
 #	show = diff-highlight | less
@@ -86,9 +87,10 @@
 	templatedir = ~/.git_template
 	defaultBranch = main
 [delta]
-	features = unobtrusive-line-numbers decorations
+	; line-numbers = false
+	; features = unobtrusive-line-numbers decorations
+	features = decorations
 	#side-by-side = true
-	line-numbers = true
 	whitespace-error-style = 22 reverse
 	minus-style = red #bold ul "#ffeeee"
 	minus-style = syntax auto
