@@ -29,6 +29,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
+Plug 'airblade/vim-gitgutter'
 
 " disabled because of startup hangs when WAN is unreachable
 " Plug 'tpope/vim-rake' " 2 intrs needed
