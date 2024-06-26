@@ -53,6 +53,8 @@ Plug 'zackhsi/fzf-tags'
 "Plug 'inkarkat/vim-EnhancedJumps' " WTF broken?
 " Plug 'romainl/vim-qf' " steals focus
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 Plug 'vim-ruby/vim-ruby'
 " Plug 'lucapette/vim-ruby-doc' " unusable in TUI: https://github.com/lucapette/vim-ruby-doc/issues/8
 " Plug 'vim-scripts/matchit.zip'
