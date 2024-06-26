@@ -10,6 +10,7 @@ set -x EDITOR vim
 set -x LESS "-rFX"
 set -x BAT_STYLE "numbers,changes"
 set -x ROADSTER_LOG_COLORSCHEME 'SOLARIZED'
+set -x MOSH_TITLE_NOPREFIX
 
 # no greeting
 function fish_greeting
