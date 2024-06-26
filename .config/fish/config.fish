@@ -6,7 +6,8 @@ set -gx RUBYOPT '--jit'
 # personal executables
 set -gx PATH ~/.local/bin ~/go/bin $PATH
 
-set -x EDITOR vim
+set -x VISUAL bat
+set -x EDITOR nvim
 set -x LESS "-rFX"
 set -x BAT_STYLE "numbers,changes"
 set -x ROADSTER_LOG_COLORSCHEME 'SOLARIZED'
