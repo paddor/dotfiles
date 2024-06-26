@@ -32,7 +32,9 @@ abbr --add fgfg fg
 # end
 
 # alias fd=fdfind so that fzf-plugin for fish works
-function fd; fdfind $argv; end
+if ! command -vq fd
+	function fd; fdfind $argv; end
+end
 
 function projdiff
 	set a $argv[2]
