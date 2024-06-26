@@ -1,3 +1,3 @@
-function fish_right_prompt
-  # intentionally left blank
-end
+#function fish_right_prompt
+#  # intentionally left blank
+#end
