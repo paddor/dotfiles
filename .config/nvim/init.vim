@@ -74,7 +74,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'micha/vim-colors-solarized'
+" Plug 'micha/vim-colors-solarized'
+Plug 'maxmx03/solarized.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
@@ -135,8 +136,6 @@ augroup GslCustomConfigs
 augroup END
 
 
-hi clear Search
-hi Search cterm=reverse
 
 
 
@@ -293,15 +292,19 @@ let g:surround_61 = "<%= \r %>"
 
 
 set bg=dark
-set notermguicolors " NeoVim v0.10.0
 colorscheme solarized
 
+
+" hi clear Search
+" hi Search cterm=reverse
 
 "hi clear Search
 "hi Search cterm=reverse
 "hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
 "hi Search cterm=bold ctermbg=darkcyan ctermfg=black
-hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
+" hi Cursor gui=none guifg=none guibg=gray " NOTE: do this in terminal config
+hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=gray guibg=darkyellow
+hi CurSearch guifg=gray guibg=yellow
 " hi Search cterm=bold ctermbg=darkyellow ctermfg=black
 "hi Search cterm=reverse ctermbg=magenta ctermfg=magenta
 "hi IncSearch cterm=underline,reverse
@@ -314,9 +317,14 @@ hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
 "hi StatusLineNC cterm=none ctermfg=grey ctermbg=black " not current window
 "hi VertSplit    cterm=none ctermfg=grey ctermbg=black
 hi VertSplit    cterm=none ctermfg=green ctermbg=none
+hi QuickFixLine guifg=lightred
 "hi LineNr ctermfg=yellow ctermbg=black cterm=none
 "hi SignColumn ctermfg=yellow ctermbg=black cterm=none
-hi Visual cterm=NONE ctermbg=darkgreen
+
+" hi Visual cterm=NONE ctermbg=darkgreen
+" hi Visual cterm=NONE ctermbg=darkgreen gui=none,bold guibg=yellow
+hi Visual cterm=NONE ctermbg=darkgreen gui=none guibg=black
+
 " hi Visual cterm=NONE ctermbg=darkyellow
 "hi Visual cterm=none ctermfg=magenta ctermbg=black
 " hi Visual cterm=reverse ctermbg=white
@@ -330,11 +338,14 @@ hi TabLineSel ctermfg=darkyellow cterm=bold,reverse
 "hi Folded ctermfg=yellow ctermbg=none cterm=underline
 hi Folded ctermfg=green ctermbg=none cterm=none
 "hi MatchParen ctermbg=darkyellow ctermfg=grey cterm=none,bold
-hi MatchParen ctermfg=darkmagenta ctermbg=none
+"hi MatchParen ctermfg=darkmagenta ctermbg=none
 hi String ctermfg=darkcyan
-hi link QuickFixLine none
+
+" hi link QuickFixLine none
 hi link rubyOperator Conditional " green and/or
 hi link rubyInterpolationDelimiter rubyPseudoOperator " red #{...}
+hi link rubyStringDelimiter rubyPseudoOperator " red '...' and "..."
+hi link MatchWord Keyword " matching do ... end
 
 
 " show extra white spaces as errors, but not while typing
@@ -532,6 +543,9 @@ nnoremap <silent> <leader>rl :call RunLastSpec()<CR>
 nnoremap  :Commentary<CR>j
 xnoremap  :'<,'>Commentary<CR>
 
+nnoremap <C-/> :Commentary<CR>j
+xnoremap <C-/> :'<,'>Commentary<CR>
+
 " s for substitute (vim-subversive)
 " nmap s <plug>(SubversiveSubstitute)
 " nmap ss <plug>(SubversiveSubstituteLine)
@@ -567,12 +581,6 @@ augroup FormatOption2
   autocmd BufNewFile,BufRead * setlocal formatoptions+=2
 augroup END
 
-
-" RGB
-" if has('termguicolors')
-" 	set termguicolors " UGLY
-" endif
-
 augroup RubyTemplates
   au!
   autocmd BufNewFile,BufRead *.rb.template set ft=ruby
@@ -604,7 +612,7 @@ endif
 " highlightedyank
 let g:highlightedyank_highlight_duration = 200
 "highlight HighlightedyankRegion cterm=reverse gui=reverse
-highlight HighlightedyankRegion ctermbg=3 ctermfg=black cterm=bold "gui=reverse
+highlight HighlightedyankRegion ctermbg=3 ctermfg=black cterm=bold guifg=black guibg=darkyellow
 
 
 " search underlying word without jumping (and keep jumplist)
