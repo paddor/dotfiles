@@ -26,6 +26,8 @@ abbr --add bede env DEV_ENV=true bundle exec
 abbr --add le less
 abbr --add fgfg fg
 
+abbr --add zl zellij
+
 # if test (uname) != 'Darwin'
 # 	function pbcopy;  xsel --clipboard --input; end
 # 	function pbpaste; xsel --clipboard --output; end
