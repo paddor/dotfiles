@@ -318,7 +318,9 @@ hi CurSearch guifg=gray guibg=yellow
 "hi StatusLine   cterm=bold ctermfg=grey ctermbg=black " horizontal line below window
 "hi StatusLineNC cterm=none ctermfg=grey ctermbg=black " not current window
 "hi VertSplit    cterm=none ctermfg=grey ctermbg=black
-hi VertSplit    cterm=none ctermfg=green ctermbg=none
+hi VertSplit    cterm=none ctermfg=green ctermbg=none " does not exist in NeoVim
+" hi WinSeparator cterm=none ctermfg=green ctermbg=none gui=none guibg='#002b36' guifg='#002b36'
+hi WinSeparator cterm=none ctermfg=green ctermbg=none gui=none guibg='#073642' guifg='#073642'
 hi QuickFixLine guifg=lightred
 "hi LineNr ctermfg=yellow ctermbg=black cterm=none
 "hi SignColumn ctermfg=yellow ctermbg=black cterm=none
