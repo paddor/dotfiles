@@ -627,7 +627,7 @@ endif
 
 " highlightedyank
 let g:highlightedyank_highlight_duration = 200
-let g:highlightedyank_highlight_in_visual = 0
+" let g:highlightedyank_highlight_in_visual = 0
 "highlight HighlightedyankRegion cterm=reverse gui=reverse
 highlight HighlightedyankRegion ctermbg=3 ctermfg=black cterm=bold guifg=black guibg=darkyellow
 
