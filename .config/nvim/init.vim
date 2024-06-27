@@ -98,6 +98,9 @@ Plug 'joukevandermaas/vim-ember-hbs'
 call plug#end()
 
 
+lua require('init')
+
+
 
 " allow abandoning modified buffers keep them loaded
 set hidden
