@@ -53,6 +53,11 @@ Plug 'zackhsi/fzf-tags'
 "Plug 'inkarkat/vim-EnhancedJumps' " WTF broken?
 " Plug 'romainl/vim-qf' " steals focus
 
+" Nvim alternatives:
+" Plug 'nvim-tree/nvim-tree.lua' " FIXME: enable lines in init.lua
+" Plug 'nvim-tree/nvim-web-devicons'
+
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'vim-ruby/vim-ruby'
