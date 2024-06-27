@@ -336,7 +336,8 @@ hi QuickFixLine guifg=lightred
 
 " hi Visual cterm=NONE ctermbg=darkgreen
 " hi Visual cterm=NONE ctermbg=darkgreen gui=none,bold guibg=yellow
-hi Visual cterm=NONE ctermbg=darkgreen gui=none guibg=black
+hi Visual cterm=NONE ctermbg=darkgreen gui=reverse
+" hi Visual cterm=NONE ctermbg=darkgreen gui=none guibg=black
 
 " hi Visual cterm=NONE ctermbg=darkyellow
 "hi Visual cterm=none ctermfg=magenta ctermbg=black
