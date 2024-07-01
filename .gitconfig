@@ -61,6 +61,7 @@
 [core]
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore
+	editor = nvim
 [alias]
 	cl = clone
 	co = checkout
