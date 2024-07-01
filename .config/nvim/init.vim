@@ -313,9 +313,12 @@ colorscheme solarized
 "hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
 "hi Search cterm=bold ctermbg=darkcyan ctermfg=black
 " hi Cursor gui=none guifg=none guibg=gray " NOTE: do this in terminal config
-hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=gray guibg=darkyellow
+" hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=gray guibg=darkyellow
+hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=black guibg=darkyellow
+" hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=reverse
 " hi Normal guibg=darkblack
-hi CurSearch guifg=gray guibg=yellow
+" hi CurSearch guifg=gray guibg=yellow
+hi CurSearch cterm=NONE ctermbg=darkgreen gui=reverse guifg=none guibg=none
 " hi Search cterm=bold ctermbg=darkyellow ctermfg=black
 "hi Search cterm=reverse ctermbg=magenta ctermfg=magenta
 "hi IncSearch cterm=underline,reverse
