@@ -9,7 +9,8 @@
 	statusHints = false
 	detachedHead = false
 [merge]
-	tool = vimdiff
+	; tool = vimdiff
+	tool = nvim -d
 
 [color]
 	diff = auto
@@ -18,11 +19,15 @@
 	interactive = auto
 	grep = auto
 	#whitespace = red
+[color "interactive"]
+	prompt = yellow bold reverse
+	help = yellow bold
 
-#[color.diff]
-#	frag = yellow
-#	old = red
-#	new = green
+
+[color.diff]
+	frag = yellow
+	old = red
+	new = blue bold
 [color.grep]
 	linenumber = yellow
 	filename = yellow
@@ -42,19 +47,8 @@
 	noprefix = true
 	algorithm = histogram
 [pager]
-#	log = diff-highlight | less
-#	show = diff-highlight | less
-#	diff = diff-highlight | less
-
-#	log = diff-so-fancy | less
-#	show = diff-so-fancy | less
-#	diff = diff-so-fancy | less
-
 	pager = delta
 
-# breaks coloring in `git add -p` :-(
-#[interactive]
-#	diffFilter = diff-highlight
 [interactive]
     diffFilter = delta --color-only
 
@@ -91,7 +85,7 @@
 	; line-numbers = false
 	; features = unobtrusive-line-numbers decorations
 	features = decorations
-	#side-by-side = true
+	; side-by-side = true
 	whitespace-error-style = 22 reverse
 	minus-style = red #bold ul "#ffeeee"
 	minus-style = syntax auto
@@ -99,6 +93,10 @@
 	; minus-style = syntax bold auto
 	; plus-style = syntax blue
 	plus-emph-style = syntax green # better readability with Solarized
+	syntax-theme = 1337
+	; syntax-theme = OneHalfDark
+	relative-paths = true
+
 
 
 [delta "decorations"]
