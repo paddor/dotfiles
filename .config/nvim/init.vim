@@ -366,15 +366,27 @@ hi link MatchWord Keyword " matching do ... end
 
 
 " show extra white spaces as errors, but not while typing
-hi link ExtraWhiteSpace ErrorMsg
-match ExtraWhiteSpace '\s\+$'
-augroup ExtraWhitespace
-  au!
-  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/ " \%# = cursor position, \@<! = only match if previous atom doesn't match
-  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-  autocmd BufWinLeave * call clearmatches()
-augroup END
+" hi link ExtraWhiteSpace ErrorMsg
+" match ExtraWhiteSpace '\s\+$'
+function! ToggleExtraWhiteSpaceAutoGroup()
+  if !exists('#ExtraWhiteSpaceAutoGroup#BufWinEnter')
+    hi link ExtraWhiteSpace ErrorMsg
+    augroup ExtraWhiteSpaceAutoGroup
+      au!
+      autocmd BufWinEnter * match ExtraWhiteSpace /\s\+$/
+      autocmd InsertEnter * match ExtraWhiteSpace /\s\+\%#\@<!$/ " \%# = cursor position, \@<! = only match if previous atom doesn't match
+      autocmd InsertLeave * match ExtraWhiteSpace /\s\+$/
+      autocmd BufWinLeave * call clearmatches()
+    augroup END
+  else
+    hi link ExtraWhiteSpace Normal
+    augroup ExtraWhiteSpaceAutoGroup
+      au!
+    augroup END
+  endif
+endfunction
+
+nnoremap <leader>E :call ToggleExtraWhiteSpaceAutoGroup()<CR>
 
 augroup QuickFix
   au!
