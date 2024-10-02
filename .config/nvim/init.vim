@@ -84,6 +84,7 @@ Plug 'honza/vim-snippets'
 
 " Plug 'micha/vim-colors-solarized'
 Plug 'maxmx03/solarized.nvim'
+" Plug 'shaunsingh/solarized.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
@@ -105,7 +106,7 @@ call plug#end()
 
 
 lua require('init')
-
+lua require('nvim-treesitter.configs').setup{highlight={enable=true}}
 
 
 " allow abandoning modified buffers keep them loaded
@@ -236,7 +237,6 @@ nnoremap <leader>C :Copen<CR>
 "autocmd FileType ruby let b:dispatch = 'bundle exec rspec -ff %'
 " NOTE: Set in .projectionist.json file instead.
 
-
 " Move cursor back to where it was in insert mode after exiting insert mode.
 " This prevents the cursor from moving one character to the left.
 inoremap <silent> <Esc> <Esc>`^
@@ -302,8 +302,10 @@ let g:surround_61 = "<%= \r %>"
 
 
 
-set bg=dark
-colorscheme solarized
+" see init.lua
+" set termguicolors
+" set bg=dark
+" colorscheme solarized
 
 
 " hi clear Search
@@ -315,11 +317,11 @@ colorscheme solarized
 "hi Search cterm=bold ctermbg=darkcyan ctermfg=black
 " hi Cursor gui=none guifg=none guibg=gray " NOTE: do this in terminal config
 " hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=gray guibg=darkyellow
-hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=black guibg=darkyellow
+hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=black guibg=magenta
 " hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=reverse
 " hi Normal guibg=darkblack
 " hi CurSearch guifg=gray guibg=yellow
-hi CurSearch cterm=NONE ctermbg=darkgreen gui=reverse guifg=none guibg=none
+hi CurSearch cterm=NONE ctermbg=darkgreen gui=reverse guifg=yellow guibg=none
 " hi Search cterm=bold ctermbg=darkyellow ctermfg=black
 "hi Search cterm=reverse ctermbg=magenta ctermfg=magenta
 "hi IncSearch cterm=underline,reverse
@@ -339,8 +341,8 @@ hi QuickFixLine guifg=lightred
 "hi SignColumn ctermfg=yellow ctermbg=black cterm=none
 
 " hi Visual cterm=NONE ctermbg=darkgreen
-" hi Visual cterm=NONE ctermbg=darkgreen gui=none,bold guibg=yellow
-hi Visual cterm=NONE ctermbg=darkgreen gui=reverse
+hi Visual cterm=NONE ctermbg=darkgreen gui=none,bold guifg=black guibg=darkyellow
+" hi Visual cterm=NONE ctermbg=darkgreen gui=reverse
 " hi Visual cterm=NONE ctermbg=darkgreen gui=none guibg=black
 
 " hi Visual cterm=NONE ctermbg=darkyellow
@@ -691,3 +693,4 @@ let l:filePath = expand('%')
         return pathshorten(l:filePath)
     endif
 endfunction
+

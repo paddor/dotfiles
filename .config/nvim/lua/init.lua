@@ -25,4 +25,16 @@
 -- vim.keymap.set('n', '<leader>c', '"+y')
 -- vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
 -- vim.keymap.set('v', '<leader>c', '"+y') -- too slow
-vim.keymap.set('v', 'Y', '"+y')
+if vim.keymap then
+	vim.keymap.set('v', 'Y', '"+y')
+end
+
+vim.o.termguicolors = true
+vim.o.background = 'dark'
+require('solarized').setup {
+  -- variant = 'spring',
+  variant = 'summer',
+  -- variant = 'autumn',
+  -- variant = 'winter',
+}
+vim.cmd.colorscheme 'solarized'
