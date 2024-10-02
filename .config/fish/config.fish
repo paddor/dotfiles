@@ -6,7 +6,8 @@ set -gx RUBYOPT '--jit'
 # personal executables
 set -gx PATH ~/.local/bin ~/.cargo/bin ~/go/bin $PATH
 
-set -x VISUAL bat
+# set -x PAGER nvim
+set -x VISUAL nvim
 set -x EDITOR nvim
 set -x LESS "-rFX"
 set -x BAT_STYLE "numbers,changes"
