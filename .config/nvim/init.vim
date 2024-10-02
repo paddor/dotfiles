@@ -52,6 +52,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'zackhsi/fzf-tags'
 "Plug 'inkarkat/vim-EnhancedJumps' " WTF broken?
 " Plug 'romainl/vim-qf' " steals focus
+Plug 'lewis6991/fileline.nvim'
 
 " Nvim alternatives:
 " Plug 'nvim-tree/nvim-tree.lua' " FIXME: enable lines in init.lua
