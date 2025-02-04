@@ -16,7 +16,7 @@ padding = { x = 5, y = 5 }
 
 [font]
 normal = { family = "Hack Nerd Font Mono", style = "Regular" }
-size = 14.0
+size = 18.0
 
 [colors]
 cursor = { text = "#000000", cursor = "#cccccc" }
