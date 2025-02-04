@@ -4,7 +4,7 @@ set fish_function_path /usr/local/share/fish/vendor_functions.d $fish_function_p
 set -gx RUBYOPT '--jit'
 
 # personal executables
-set -gx PATH ~/.local/bin ~/.cargo/bin ~/go/bin $PATH
+set -gx PATH ~/.local/bin ~/.cargo/bin ~/go/bin ~/.docker/bin $PATH
 
 # set -x PAGER nvim
 set -x VISUAL nvim
