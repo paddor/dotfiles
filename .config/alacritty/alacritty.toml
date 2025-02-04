@@ -29,7 +29,8 @@ style = { shape = "Block", blinking = "Off" }
 # style = { shape = "Underline", blinking = "Off" }
 # thickness = 0.5
 
-
+[mouse]
+hide_when_typing = true
 
 [selection]
 save_to_clipboard = true
