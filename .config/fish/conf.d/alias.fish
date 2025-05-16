@@ -48,7 +48,9 @@ end
 function install_ruby
     # ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc CFLAGS="-O0 -g"
     # ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc # jemalloc breaks FFI
-    ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri
+    env CFLAGS="-O2" ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri && \
+		echo "NOTE: Run update_ruby_tags after activating the new Ruby."
+end
 
     echo "NOTE: Run update_ruby_tags after activating the new Ruby."
 end
