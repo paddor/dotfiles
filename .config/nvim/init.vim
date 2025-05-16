@@ -228,7 +228,7 @@ nnoremap <silent> <leader>l :silent :set list!<CR>
 "nnoremap ~<CR> :Make %<CR>
 " nnoremap `<CR> :Dispatch -compiler=rspec_ff<CR>
 " nnoremap ~<CR> :Dispatch -compiler=rspec<CR>
-nnoremap ~<CR> :Dispatch bundle exec rspec %<CR>
+nnoremap ~<CR> :Dispatch env CONSOLE_OUTPUT='Console::Output::Terminal' bundle exec rspec %<CR>
 nnoremap <leader>C :Copen<CR>
 "nnoremap <leader>b :Make %<CR>
 "nnoremap <leader>B :Make<CR>
