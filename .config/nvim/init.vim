@@ -148,7 +148,8 @@ augroup GslCustomConfigs
 augroup END
 
 
-
+" equalize windows when terminal window/pane is resized
+autocmd VimResized * exe "normal \<c-w>="
 
 
 if has("vms")
