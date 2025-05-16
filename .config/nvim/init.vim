@@ -79,7 +79,8 @@ Plug 'glts/vim-radical' " what's this?
 Plug 'junegunn/vim-easy-align'
 Plug 'AndrewRadev/splitjoin.vim'
 
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
 Plug 'honza/vim-snippets'
 
 " Plug 'micha/vim-colors-solarized'
@@ -107,6 +108,10 @@ call plug#end()
 
 lua require('init')
 lua require('nvim-treesitter.configs').setup{highlight={enable=true}}
+
+" loads from snippets/ directory inside
+lua require("luasnip.loaders.from_snipmate").lazy_load('~/.local/share/nvim/plugged/vim-snippets')
+lua require("luasnip.loaders.from_snipmate").lazy_load('~/.config/nvim')
 
 
 " allow abandoning modified buffers keep them loaded
@@ -525,8 +530,6 @@ tnoremap <Esc> <C-\><C-n>
 
 " Bundler
 let $DEV_ENV='true'
-
-
 
 " just display popup-menu if there are multiple matches, don't insert first match
 " set completeopt+=longest
