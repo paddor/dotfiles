@@ -43,3 +43,10 @@ set -g man_standout -b black 93a1a1
 set -g man_underline -u 93a1a1
 
 set -gx XDG_CONFIG_HOME $HOME/.config
+
+# pnpm
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
