@@ -52,7 +52,9 @@ function install_ruby
 		echo "NOTE: Run update_ruby_tags after activating the new Ruby."
 end
 
-    echo "NOTE: Run update_ruby_tags after activating the new Ruby."
+function install_ruby_debug
+    env CFLAGS="-fsanitize=address -fno-omit-frame-pointer -DUSE_MN_THREADS=0 -O0 -Wall" ruby-install ruby $argv[1] -- --enable-shared --disable-install-doc --prefix=$HOME/.rubies/ruby-debug && \
+		echo "NOTE: Run update_ruby_tags after activating the new Ruby."
 end
 
 function update_ruby_tags
