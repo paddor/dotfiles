@@ -61,3 +61,7 @@ function update_ruby_tags
     which ctags
     ctags --verbose --recurse --language-force=C --extras --kinds-C=+p -f $RUBY_ROOT/tags $RUBY_ROOT/include
 end
+
+alias pn=pnpm
+alias ov=overmind
+alias vimdiff="nvim -d"
