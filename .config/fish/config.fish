@@ -17,6 +17,11 @@ set -x MOSH_TITLE_NOPREFIX
 function fish_greeting
 end
 
+
+# no slow lookup of similar commands
+function fish_command_not_found
+end
+
 source ~/.config/fish/conf.d/alias.fish
 
 
