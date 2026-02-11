@@ -1,10 +1,6 @@
+abbr --add j jobs
 abbr --add vi nvim
-# function vi; nvim $argv; end
-
-# if test (uname) = 'Darwin'
-# 	# system VIM is broken
-# 	function vim; nvim $argv; end
-# end
+abbr --add chr chruby
 
 abbr --add gs git status
 abbr --add gl git log --graph
@@ -18,9 +14,10 @@ abbr --add gcm git commit -m
 abbr --add gca git commit --amend
 abbr --add gup git pull --rebase -v
 abbr --add gpv git push -v
+abbr --add gpl git pull -v
 abbr --add gls git log --graph --stat
 
-abbr --add irb pry
+# abbr --add irb pry
 abbr --add be bundle exec
 abbr --add bede env DEV_ENV=true bundle exec
 abbr --add le less
