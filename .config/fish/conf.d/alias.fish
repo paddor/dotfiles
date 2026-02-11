@@ -42,6 +42,10 @@ function projdiff
 	vimdiff $a $b
 end
 
+function gcmt
+	git commit -m $argv[1] && git tag $argv[1]
+end
+
 function install_ruby
     # ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc CFLAGS="-O0 -g"
     # ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc # jemalloc breaks FFI
