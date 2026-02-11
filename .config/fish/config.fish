@@ -1,10 +1,9 @@
 # chruby 1.0.0
 set fish_function_path /usr/local/share/fish/vendor_functions.d $fish_function_path
-# chruby 3.2.2
 set -gx RUBYOPT '--jit'
 
 # personal executables
-set -gx PATH ~/.local/bin ~/.cargo/bin ~/go/bin ~/.docker/bin $PATH
+set -gx PATH ~/.local/bin ~/.cargo/bin ~/go/bin $PATH
 
 # set -x PAGER nvim
 set -x VISUAL nvim
@@ -32,7 +31,7 @@ set -gx NVM_DIR "$HOME/.nvm"
 
 
 # PostgreSQL
-set -gx PATH /usr/lib/postgresql/12/bin $PATH
+# set -gx PATH /usr/lib/postgresql/12/bin $PATH
 
 
 # Solarized Dark & Green highlight
