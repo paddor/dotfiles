@@ -10,7 +10,12 @@
 	detachedHead = false
 [merge]
 	; tool = vimdiff
-	tool = nvim -d
+	; tool = nvim -d
+	conflictstyle = merge
+	tool = fugitive
+
+[mergetool "fugitive"]
+  cmd = nvim -O "+Gvdiffsplit!" $MERGED
 
 [color]
 	diff = auto
@@ -38,6 +43,7 @@
 	selected = bold
 [push]
 	default = simple
+	followTags = true
 [filter "media"]
 	clean = git media clean %f
 	smudge = git media smudge %f
@@ -88,13 +94,15 @@
 	; side-by-side = true
 	whitespace-error-style = 22 reverse
 	minus-style = red #bold ul "#ffeeee"
-	minus-style = syntax auto
+	; minus-style = syntax auto
 	; minus-emph-style = syntax auto
 	; minus-style = syntax bold auto
-	; plus-style = syntax blue
-	plus-emph-style = syntax green # better readability with Solarized
-	syntax-theme = 1337
+	plus-style = green
+	; plus-emph-style = syntax green # better readability with Solarized
+	; syntax-theme = 1337
 	; syntax-theme = OneHalfDark
+	; syntax-theme = Coldark-Dark
+	syntax-theme = none
 	relative-paths = true
 
 

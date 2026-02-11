@@ -6,7 +6,16 @@ if [ -x update_tags ]
 then
 	./update_tags
 else
-	trap 'rm -f "$$.tags"' EXIT
-	git ls-files | ctags --tag-relative -L - -f"$$.tags" --languages=-javascript,sql
-	mv "$$.tags" "tags"
+	if command -q ctags
+	then
+		trap 'rm -f "$$.tags"' EXIT
+		git ls-files | ctags --tag-relative -L - -f"$$.tags" --languages=-javascript,sql
+
+		if [ -e .ruby-deps ]
+		then
+			ctags --verbose --tag-relative --append=yes -f"$$.tags" --exclude="$PWD/*" --recurse=yes --extras --fields=+l -L .ruby-deps
+		fi
+
+		mv "$$.tags" "tags"
+	fi
 fi
