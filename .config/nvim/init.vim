@@ -2,11 +2,6 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-"
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
-"call plug#begin('~/.vim/plugged')
 if has('nvim')
 	call plug#begin(stdpath('data') . '/plugged')
 else
@@ -21,9 +16,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-eunuch'
 
-"Plug 'tpope/vim-vinegar' " lingering buffers in :Buffers :/
+" Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-vinegar' " lingering buffers in :Buffers :/
 
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-commentary'
@@ -35,23 +30,15 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-rake' " 2 intrs needed
 " Plug 'tpope/vim-bundler' " 1 intrs needed
 
-" Plug 'jreybert/vimagit'
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeFocus', 'NERDTreeFind'] }
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'ryanoasis/vim-devicons'
 
-
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleVCS', 'NERDTreeFocus', 'NERDTreeFind'] }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'lambdalisue/fern.vim'
-" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-" Plug 'lambdalisue/nerdfont.vim'
-" Plug 'lambdalisue/glyph-palette.vim'
-" Plug 'lambdalisue/fern-git-status.vim'
-" Plug 'lambdalisue/fern-hijack.vim'
-Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'zackhsi/fzf-tags'
-"Plug 'inkarkat/vim-EnhancedJumps' " WTF broken?
-" Plug 'romainl/vim-qf' " steals focus
+
+Plug 'romainl/vim-qf'
 Plug 'lewis6991/fileline.nvim'
 
 " Nvim alternatives:
@@ -59,46 +46,34 @@ Plug 'lewis6991/fileline.nvim'
 " Plug 'nvim-tree/nvim-web-devicons'
 
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'main', 'do': ':TSUpdate'}
 
 Plug 'vim-ruby/vim-ruby'
-" Plug 'lucapette/vim-ruby-doc' " unusable in TUI: https://github.com/lucapette/vim-ruby-doc/issues/8
-" Plug 'vim-scripts/matchit.zip'
-Plug 'andymass/vim-matchup'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-" Plug 'justinmk/vim-sneak'
 Plug 'glts/vim-textobj-comment'
 Plug 'preservim/vim-textobj-quote'
 
-Plug 'glts/vim-magnum' " for vim-radical
-Plug 'glts/vim-radical' " what's this?
-
-"Plug 'svermeulen/vim-easyclip' " too much. Better solution: vim-subversive
-" Plug 'svermeulen/vim-subversive'
+" Plug 'svermeulen/vim-subversive' " TODO
 Plug 'junegunn/vim-easy-align'
 Plug 'AndrewRadev/splitjoin.vim'
 
-" Plug 'SirVer/ultisnips'
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
+Plug 'SirVer/ultisnips'
+" Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
 Plug 'honza/vim-snippets'
 
-" Plug 'micha/vim-colors-solarized'
-Plug 'maxmx03/solarized.nvim'
-" Plug 'shaunsingh/solarized.nvim'
+" Plug 'maxmx03/solarized.nvim'
 Plug 'machakann/vim-highlightedyank'
-Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
-Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
+"Plug 'ojroques/vim-oscyank', {'branch': 'main'} " TODO
+" Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
+" Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
+
 Plug 'itchyny/lightline.vim'
 Plug 'thoughtbot/vim-rspec'
+Plug 'vim-test/vim-test'
 Plug 'mechatroner/rainbow_csv'
-Plug 'vim-scripts/gsl.vim'
-
-" Plug 'kassio/neoterm' " defines ,tt which adds timeout to , command
-" Plug 'hwartig/vim-seeing-is-believing'
-
+" Plug 'vim-scripts/gsl.vim'
 Plug 'dag/vim-fish'
-" Plug 'vifm/vifm.vim'
 
 Plug 'joukevandermaas/vim-ember-hbs'
 
@@ -107,11 +82,10 @@ call plug#end()
 
 
 lua require('init')
-lua require('nvim-treesitter.configs').setup{highlight={enable=true}}
 
 " loads from snippets/ directory inside
-lua require("luasnip.loaders.from_snipmate").lazy_load('~/.local/share/nvim/plugged/vim-snippets')
-lua require("luasnip.loaders.from_snipmate").lazy_load('~/.config/nvim')
+" lua require("luasnip.loaders.from_snipmate").lazy_load('~/.local/share/nvim/plugged/vim-snippets')
+" lua require("luasnip.loaders.from_snipmate").lazy_load('~/.config/nvim')
 
 
 " allow abandoning modified buffers keep them loaded
@@ -144,6 +118,9 @@ augroup END
 augroup RubyCustomConfigs
   au!
   autocmd FileType ruby set tw=118 ts=2 sw=2 et iskeyword-=#-
+
+  " NOTE: indentation seems to work just fine without this indentexpr
+  " autocmd FileType ruby set tw=118 ts=2 sw=2 et iskeyword-=#- indentexpr='nvim_treesitter#indent()'
 augroup END
 
 augroup GslCustomConfigs
@@ -154,7 +131,7 @@ augroup END
 
 
 " equalize windows when terminal window/pane is resized
-autocmd VimResized * exe "normal \<c-w>="
+" autocmd VimResized * exe "normal \<c-w>="
 
 
 if has("vms")
@@ -168,6 +145,7 @@ set showcmd		" display incomplete commands
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
+
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -202,13 +180,12 @@ set updatetime=500
 " faster scrolling with ^e ^y
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+xnoremap <C-e> 3<C-e>
+xnoremap <C-y> 3<C-y>
 
 " line-wise scrolling with track pad
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
-
-" better % command
-" runtime macros/matchit.vim " and needed for textobj-rubyblock
 
 " moving between tabs
 " map <S-L> :tabn<return>
@@ -229,19 +206,25 @@ nnoremap <silent> <leader>m :silent :set nu!<CR>
 " toggle listchars
 nnoremap <silent> <leader>l :silent :set list!<CR>
 
-" run makeprg
-"nnoremap ~<CR> :Make %<CR>
-" nnoremap `<CR> :Dispatch -compiler=rspec_ff<CR>
-" nnoremap ~<CR> :Dispatch -compiler=rspec<CR>
-nnoremap ~<CR> :Dispatch env CONSOLE_OUTPUT='Console::Output::Terminal' bundle exec rspec %<CR>
-nnoremap <leader>C :Copen<CR>
-"nnoremap <leader>b :Make %<CR>
-"nnoremap <leader>B :Make<CR>
-"nnoremap <silent> <leader>r :Dispatch<CR>
-" NOTE: Using the mappings from Dispatch instead. See :h dispatch-maps
-" Dispatch (e.g. Rspec)
-"autocmd FileType ruby let b:dispatch = 'bundle exec rspec -ff %'
-" NOTE: Set in .projectionist.json file instead.
+
+let $CONSOLE_OUTPUT = 'Console::Output::Terminal'
+" nnoremap ~<CR> :Dispatch env CONSOLE_OUTPUT='Console::Output::Terminal' bundle exec rspec %<CR>
+" nnoremap <leader>C :Copen<CR>
+
+" vim-test: make test commands execute using dispatch.vim
+let test#strategy = "dispatch"
+" let test#strategy = "neovim_sticky"
+
+"augroup VimRspec
+"  au!
+"  autocmd FileType ruby,eruby let g:rspec_command = "compiler rspec | Make {spec}"
+"augroup END
+"nnoremap <silent> <leader>rn :call RunNearestSpec()<CR>
+"nnoremap <silent> <leader>rl :call RunLastSpec()<CR>
+nnoremap <silent> ~<CR> :TestFile<CR>
+nnoremap <silent> <leader>rn :TestNearest<CR>
+nnoremap <silent> <leader>rl :TestLast<CR>
+nnoremap <silent> <leader>t :TestVisit<CR>
 
 " Move cursor back to where it was in insert mode after exiting insert mode.
 " This prevents the cursor from moving one character to the left.
@@ -252,7 +235,7 @@ let NERDTreeHijackNetrw=1
 let NERDTreeMinimalMenu=1
 let NERDTreeMinimalUI=1
 let NERDTreeQuitOnOpen=1
-nnoremap <leader>t :NERDTreeToggleVCS<CR>
+" nnoremap <leader>t :NERDTreeToggleVCS<CR>
 nnoremap - :NERDTreeFind<CR>
 augroup NERDTreeConfig
  au!
@@ -309,75 +292,77 @@ let g:surround_61 = "<%= \r %>"
 
 
 " see init.lua
-" set termguicolors
-" set bg=dark
+set termguicolors
+set bg=dark
+" colorscheme desert
+colorscheme unokai
 " colorscheme solarized
 
 
 " hi clear Search
 " hi Search cterm=reverse
 
-"hi clear Search
-"hi Search cterm=reverse
-"hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
-"hi Search cterm=bold ctermbg=darkcyan ctermfg=black
-" hi Cursor gui=none guifg=none guibg=gray " NOTE: do this in terminal config
-" hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=gray guibg=darkyellow
-hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=black guibg=magenta
-" hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=reverse
-" hi Normal guibg=darkblack
-" hi CurSearch guifg=gray guibg=yellow
-hi CurSearch cterm=NONE ctermbg=darkgreen gui=reverse guifg=yellow guibg=none
-" hi Search cterm=bold ctermbg=darkyellow ctermfg=black
-"hi Search cterm=reverse ctermbg=magenta ctermfg=magenta
-"hi IncSearch cterm=underline,reverse
-"hi CursorLine cterm=none ctermfg=none ctermbg=black
-"hi CursorLine cterm=none ctermfg=none ctermbg=none
-"hi CursorLineNr cterm=none ctermfg=none ctermbg=none
-"reset CursorLine
-" hi CursorLine cterm=none ctermfg=none ctermbg=none
-"hi StatusLine   cterm=bold ctermfg=grey ctermbg=black " horizontal line below window
-"hi StatusLineNC cterm=none ctermfg=grey ctermbg=black " not current window
-"hi VertSplit    cterm=none ctermfg=grey ctermbg=black
-hi VertSplit    cterm=none ctermfg=green ctermbg=none " does not exist in NeoVim
-" hi WinSeparator cterm=none ctermfg=green ctermbg=none gui=none guibg='#002b36' guifg='#002b36'
-hi WinSeparator cterm=none ctermfg=green ctermbg=none gui=none guibg='#073642' guifg='#073642'
-hi QuickFixLine guifg=lightred
-"hi LineNr ctermfg=yellow ctermbg=black cterm=none
-"hi SignColumn ctermfg=yellow ctermbg=black cterm=none
+""hi clear Search
+""hi Search cterm=reverse
+""hi Search cterm=bold ctermbg=darkmagenta ctermfg=black
+""hi Search cterm=bold ctermbg=darkcyan ctermfg=black
+"" hi Cursor gui=none guifg=none guibg=gray " NOTE: do this in terminal config
+"" hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=gray guibg=darkyellow
+"hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=none guifg=black guibg=magenta
+"" hi Search cterm=bold ctermbg=darkmagenta ctermfg=black gui=reverse
+"" hi Normal guibg=darkblack
+"" hi CurSearch guifg=gray guibg=yellow
+"hi CurSearch cterm=NONE ctermbg=darkgreen gui=reverse guifg=yellow guibg=none
+"" hi Search cterm=bold ctermbg=darkyellow ctermfg=black
+""hi Search cterm=reverse ctermbg=magenta ctermfg=magenta
+""hi IncSearch cterm=underline,reverse
+""hi CursorLine cterm=none ctermfg=none ctermbg=black
+""hi CursorLine cterm=none ctermfg=none ctermbg=none
+""hi CursorLineNr cterm=none ctermfg=none ctermbg=none
+""reset CursorLine
+"" hi CursorLine cterm=none ctermfg=none ctermbg=none
+""hi StatusLine   cterm=bold ctermfg=grey ctermbg=black " horizontal line below window
+""hi StatusLineNC cterm=none ctermfg=grey ctermbg=black " not current window
+""hi VertSplit    cterm=none ctermfg=grey ctermbg=black
+"hi VertSplit    cterm=none ctermfg=green ctermbg=none " does not exist in NeoVim
+"" hi WinSeparator cterm=none ctermfg=green ctermbg=none gui=none guibg='#002b36' guifg='#002b36'
+"hi WinSeparator cterm=none ctermfg=green ctermbg=none gui=none guibg='#073642' guifg='#073642'
+"hi QuickFixLine guifg=lightred
+""hi LineNr ctermfg=yellow ctermbg=black cterm=none
+""hi SignColumn ctermfg=yellow ctermbg=black cterm=none
+"
+"" hi Visual cterm=NONE ctermbg=darkgreen
+"hi Visual cterm=NONE ctermbg=darkgreen gui=none,bold guifg=black guibg=darkyellow
+"" hi Visual cterm=NONE ctermbg=darkgreen gui=reverse
+"" hi Visual cterm=NONE ctermbg=darkgreen gui=none guibg=black
+"
+"" hi Visual cterm=NONE ctermbg=darkyellow
+""hi Visual cterm=none ctermfg=magenta ctermbg=black
+"" hi Visual cterm=reverse ctermbg=white
+"hi SpecialKey ctermbg=NONE ctermfg=darkblue cterm=NONE " nbsp, space, tab and trail
+""hi Todo ctermbg=darkyellow ctermfg=black cterm=bold " TODOs
+"" TODO
+"hi TabLineFill cterm=none ctermbg=black
+"hi TabLine ctermfg=darkyellow ctermbg=black cterm=none
+""hi TabLineSel ctermfg=darkcyan ctermbg=black cterm=bold
+"hi TabLineSel ctermfg=darkyellow cterm=bold,reverse
+""hi Folded ctermfg=yellow ctermbg=none cterm=underline
+"hi Folded ctermfg=green ctermbg=none cterm=none
+""hi MatchParen ctermbg=darkyellow ctermfg=grey cterm=none,bold
+""hi MatchParen ctermfg=darkmagenta ctermbg=none
+"hi String ctermfg=darkcyan
 
-" hi Visual cterm=NONE ctermbg=darkgreen
-hi Visual cterm=NONE ctermbg=darkgreen gui=none,bold guifg=black guibg=darkyellow
-" hi Visual cterm=NONE ctermbg=darkgreen gui=reverse
-" hi Visual cterm=NONE ctermbg=darkgreen gui=none guibg=black
-
-" hi Visual cterm=NONE ctermbg=darkyellow
-"hi Visual cterm=none ctermfg=magenta ctermbg=black
-" hi Visual cterm=reverse ctermbg=white
-hi SpecialKey ctermbg=NONE ctermfg=darkblue cterm=NONE " nbsp, space, tab and trail
-"hi Todo ctermbg=darkyellow ctermfg=black cterm=bold " TODOs
-" TODO
-hi TabLineFill cterm=none ctermbg=black
-hi TabLine ctermfg=darkyellow ctermbg=black cterm=none
-"hi TabLineSel ctermfg=darkcyan ctermbg=black cterm=bold
-hi TabLineSel ctermfg=darkyellow cterm=bold,reverse
-"hi Folded ctermfg=yellow ctermbg=none cterm=underline
-hi Folded ctermfg=green ctermbg=none cterm=none
-"hi MatchParen ctermbg=darkyellow ctermfg=grey cterm=none,bold
-"hi MatchParen ctermfg=darkmagenta ctermbg=none
-hi String ctermfg=darkcyan
-
-" hi link QuickFixLine none
-hi link rubyOperator Conditional " green and/or
-hi link rubyInterpolationDelimiter rubyPseudoOperator " red #{...}
-hi link rubyStringDelimiter rubyPseudoOperator " red '...' and "..."
-hi link MatchWord Keyword " matching do ... end
+"" hi link QuickFixLine none
+"hi link rubyOperator Conditional " green and/or
+"hi link rubyInterpolationDelimiter rubyPseudoOperator " red #{...}
+"hi link rubyStringDelimiter rubyPseudoOperator " red '...' and "..."
+"hi link MatchWord Keyword " matching do ... end
 
 
 " show extra white spaces as errors, but not while typing
 " hi link ExtraWhiteSpace ErrorMsg
 " match ExtraWhiteSpace '\s\+$'
-function! ToggleExtraWhiteSpaceAutoGroup()
+function ToggleExtraWhiteSpaceAutoGroup()
   if !exists('#ExtraWhiteSpaceAutoGroup#BufWinEnter')
     hi link ExtraWhiteSpace ErrorMsg
     augroup ExtraWhiteSpaceAutoGroup
@@ -395,29 +380,29 @@ function! ToggleExtraWhiteSpaceAutoGroup()
   endif
 endfunction
 
-nnoremap <leader>E :call ToggleExtraWhiteSpaceAutoGroup()<CR>
+" nnoremap <leader>E :call ToggleExtraWhiteSpaceAutoGroup()<CR>
 
-augroup QuickFix
-  au!
-  " don't highlight extra whitespaces
-  autocmd BufWinEnter quickfix match ExtraWhitespace ''
+" augroup QuickFix
+"   au!
+"   " don't highlight extra whitespaces
+"   autocmd BufWinEnter quickfix match ExtraWhitespace ''
 
-  au FileType qf call AdjustWindowHeight(8, 16)
-  hi CursorLine ctermbg=black
-  au FileType qf set cursorline
+"   au FileType qf call AdjustWindowHeight(8, 16)
+"   hi CursorLine ctermbg=black
+"   au FileType qf set cursorline
 
-  au WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
+"   au WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
 
-  " disable statusline
-  autocmd BufWinEnter quickfix setlocal laststatus=0
+"   " disable statusline
+"   autocmd BufWinEnter quickfix setlocal laststatus=0
 
-  " exclude from :ls and buffer navigation like [b and ]b
-  autocmd BufWinEnter quickfix set nobuflisted
-augroup END
+"   " exclude from :ls and buffer navigation like [b and ]b
+"   autocmd BufWinEnter quickfix set nobuflisted
+" augroup END
 
-function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
+" function AdjustWindowHeight(minheight, maxheight)
+"   exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+" endfunction
 
 "hi DiffAdd        ctermfg=darkgreen ctermbg=none
 "hi DiffChange     ctermfg=none ctermbg=none
@@ -456,9 +441,9 @@ nmap ga <Plug>(EasyAlign)
 
 
 " TagBar
-nnoremap <leader>T :TagbarToggle<CR>
-let g:tagbar_position='topleft vertical'
-let g:tagbar_sort = 0
+" nnoremap <leader>T :TagbarToggle<CR>
+" let g:tagbar_position='topleft vertical'
+" let g:tagbar_sort = 0
 
 
 " tags of current Ruby
@@ -478,39 +463,15 @@ nnoremap gb :Buffers<CR>
 nnoremap <leader>A "ayiw:Rg <c-R>a<CR>
 nmap <C-]> <Plug>(fzf_tags)
 
-
-
-" fast buffer listing and switching
-" vanilla:
+" vanilla fast buffer listing and switching:
 " nnoremap gb :ls<CR>:b<Space>
 
+" open new vertical/horizontal windows to the right/below
 set splitright
 set splitbelow
 
-" vertical split :h (help) (NOTE: makes searching for "foo h" impossible)
-" cabbrev h vert to h
-" cabbrev h h
-
-
-" vim-sneak
-" map f <Plug>Sneak_s
-" map F <Plug>Sneak_S
-
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ }
-
+" don't add EOL to end of files
 set nofixeol
-
-
-" M to move text from cursor to end of line (easyclip)
-"nmap M <Plug>MoveMotionEndOfLinePlug
-
-
-" tends to fail 1st time
-" nmap <F12> :so $MYVIMRC \| :PlugInstall \| :PlugUpdate<CR>
-nmap <F12> :so $MYVIMRC \| :PlugInstall<CR>
-"nmap <S-F12> :PlugUpdate<CR> " mapping S-F* is hard
 
 
 set wildmode=longest:full,full
@@ -522,60 +483,26 @@ cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
 cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
-" NeoTerm
-let g:neoterm_repl_ruby='pry'
-let g:neoterm_autoscroll='1'
-tnoremap <Esc> <C-\><C-n>
-
-
-" Bundler
-let $DEV_ENV='true'
-
-" just display popup-menu if there are multiple matches, don't insert first match
-" set completeopt+=longest
-
-" YouCompleteMe
-" augroup CComplete
-"   autocmd!
-"   autocmd FileType c let g:ycm_collect_identifiers_from_tags_files = 1
-" augroup END
-" let g:ycm_collect_identifiers_from_tags_files = 1
-" let g:ycm_add_preview_to_completeopt = 0
-" let g:ycm_clangd_args = ['--all-scopes-completion']
-
-
+" yank to end of line but without newline char
 nnoremap Y yg_
+
+" visual mode: make Y copy into X11 CLIPBOARD register
+xmap Y "+y
 
 
 " vim-ruby
-augroup RubyComplete
-  autocmd!
-  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-  autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-  autocmd FileType ruby,eruby let g:rubycomplete_load_gemfile = 1
-  autocmd FileType ruby,eruby let g:rubycomplete_use_bundler = 1
-  let ruby_operators        = 1
-  let ruby_pseudo_operators = 1
-  "let ruby_fold = 0
-  "let ruby_foldable_groups = 'def'
-augroup END
+"augroup RubyComplete
+"  autocmd!
+"  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+"  autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"  autocmd FileType ruby,eruby let g:rubycomplete_load_gemfile = 1
+"  autocmd FileType ruby,eruby let g:rubycomplete_use_bundler = 1
+"  let ruby_operators        = 1
+"  let ruby_pseudo_operators = 1
+"  "let ruby_fold = 0
+"  "let ruby_foldable_groups = 'def'
+"augroup END
 
-
-" vim-ruby-doc
-"let g:ruby_doc_command='w3m'
-
-" if !exists('g:dispatch_compilers')
-"   let g:dispatch_compilers = {}
-" endif
-" let g:dispatch_compilers['rspec'] = 'rake'
-
-
-augroup VimRspec
-  au!
-  autocmd FileType ruby,eruby let g:rspec_command = "compiler rspec | Make {spec}"
-augroup END
-nnoremap <silent> <leader>rn :call RunNearestSpec()<CR>
-nnoremap <silent> <leader>rl :call RunLastSpec()<CR>
 
 " Comments with CTRL-/ (typed using CTRL-V CTRL-/)
 nnoremap  :Commentary<CR>j
@@ -584,18 +511,29 @@ xnoremap  :'<,'>Commentary<CR>
 nnoremap <C-/> :Commentary<CR>j
 xnoremap <C-/> :'<,'>Commentary<CR>
 
+
+" Roadster development
+let $DEV_ENV='true'
+nnoremap <m-a> :Buffers<CR>actors/
+nnoremap <m-m> :Buffers<CR>messaging/
+nnoremap <m-e> :Buffers<CR>engines/
+" restart Roadster (via Overmind)
+nnoremap <silent> <leader>R :silent exec '!overmind restart roadster'<CR>
+nnoremap <silent> <leader>S :silent exec '!overmind restart simu'<CR>
+
+
 " s for substitute (vim-subversive)
-" nmap s <plug>(SubversiveSubstitute)
-" nmap ss <plug>(SubversiveSubstituteLine)
-" nmap S <plug>(SubversiveSubstituteToEndOfLine)
-nmap <leader>s <plug>(SubversiveSubstituteRange)
-xmap <leader>s <plug>(SubversiveSubstituteRange)
-nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
-nmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
-xmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
-nmap <leader>css <plug>(SubversiveSubstituteWordRangeConfirm)
-let g:subversivePromptWithActualCommand = 1
-let g:subversivePreserveCursorPosition = 1
+"" nmap s <plug>(SubversiveSubstitute)
+"" nmap ss <plug>(SubversiveSubstituteLine)
+"" nmap S <plug>(SubversiveSubstituteToEndOfLine)
+"nmap <leader>s <plug>(SubversiveSubstituteRange)
+"xmap <leader>s <plug>(SubversiveSubstituteRange)
+"nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
+"nmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
+"xmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
+"nmap <leader>css <plug>(SubversiveSubstituteWordRangeConfirm)
+"let g:subversivePromptWithActualCommand = 1
+"let g:subversivePreserveCursorPosition = 1
 
 " ie = inner entire buffer
 onoremap ie :exec "normal! ggVG"<cr>
@@ -623,6 +561,8 @@ augroup RubyTemplates
   au!
   autocmd BufNewFile,BufRead *.rb.template set ft=ruby
 augroup END
+
+
 
 
 " Enable seeing-is-believing mappings only for Ruby
@@ -668,28 +608,38 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 vnoremap X :diffput<CR>
 
 
+" \ 'colorscheme': 'solarized',
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'wombat',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
+      \   'left': [ [ 'mode', 'paste', 'percent', 'lineinfo' ],
       \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'right': [ [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'inactive': {
-      \   'left': [ [ 'mode', 'paste' ],
+      \   'left': [ [ 'percent', 'lineinfo' ],
       \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'right': [ [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'filename': 'LightlineTruncatedFileName'
-      \ }
+      \ },
+      \ 'mode_map': {
+        \ 'n' : 'N',
+        \ 'i' : 'I',
+        \ 'R' : 'R',
+        \ 'v' : 'V',
+        \ 'V' : 'VL',
+        \ "\<C-v>": 'VB',
+        \ 'c' : 'C',
+        \ 's' : 'S',
+        \ 'S' : 'SL',
+        \ "\<C-s>": 'SB',
+        \ 't': 'T',
+        \ },
       \ }
 
-function! LightlineTruncatedFileName()
+function LightlineTruncatedFileName()
 let l:filePath = expand('%')
     if winwidth(0) > 100
         return l:filePath
@@ -698,3 +648,44 @@ let l:filePath = expand('%')
     endif
 endfunction
 
+
+function MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  return pathshorten(bufname(buflist[winnr - 1]), 3)
+endfunction
+function MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let s ..= '%#TabLineSel#'
+    else
+      let s ..= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let s ..= '%' .. (i + 1) .. 'T'
+
+    " the label is made by MyTabLabel()
+    let s ..= ' %{MyTabLabel(' .. (i + 1) .. ')} '
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  " let s ..= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  " if tabpagenr('$') > 1
+  "   let s ..= '%=%#TabLine#%999Xclose'
+  " endif
+
+  return s
+endfunction
+
+set tabline=%!MyTabLine()
+
+
+" TODO osxyank
+" nmap <leader>c <Plug>OSCYankOperator
+" nmap <leader>cc <leader>c_
+" vmap <leader>c <Plug>OSCYankVisual

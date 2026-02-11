@@ -2,6 +2,9 @@
 set fish_function_path /usr/local/share/fish/vendor_functions.d $fish_function_path
 set -gx RUBYOPT '--jit'
 
+# Go 1.23 (for FZF)
+set -gx PATH /usr/lib/go-1.23/bin/ $PATH
+
 # personal executables
 set -gx PATH ~/.local/bin ~/.cargo/bin ~/go/bin $PATH
 
