@@ -49,14 +49,25 @@ end
 function install_ruby
     # ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc CFLAGS="-O0 -g"
     # ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri --with-jemalloc # jemalloc breaks FFI
-    env CFLAGS="-O2" ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri && \
+    env CFLAGS="-O2" \
+		ruby-install ruby $argv[1] -- --enable-shared --with-rdoc=ri && \
 		echo "NOTE: Run update_ruby_tags after activating the new Ruby."
 end
 
 function install_ruby_debug
-    env CFLAGS="-fsanitize=address -fno-omit-frame-pointer -DUSE_MN_THREADS=0 -O0 -Wall" ruby-install ruby $argv[1] -- --enable-shared --disable-install-doc --prefix=$HOME/.rubies/ruby-debug && \
+    # env CFLAGS="-fno-omit-frame-pointer -DUSE_MN_THREADS=0 -Og -g -Wall" \
+    env CFLAGS="-Og -g -Wall" \
+		ruby-install ruby $argv[1] -- --enable-debug-env --enable-shared --disable-install-doc --prefix=$HOME/.rubies/ruby-$argv[1]-debug && \
 		echo "NOTE: Run update_ruby_tags after activating the new Ruby."
 end
+
+function install_ruby_asan
+	# -DRUBY_DEBUG=1 -DUSE_RUBY_DEBUG_LOG=1
+    env CFLAGS="-fsanitize=address -DRUBY_DEBUG=1 -fno-omit-frame-pointer -DUSE_MN_THREADS=0 -O0 -Wall" \
+		ruby-install ruby $argv[1] -- --enable-debug-env --enable-shared --disable-install-doc --prefix=$HOME/.rubies/ruby-$argv[1]-asan && \
+		echo "NOTE: Run update_ruby_tags after activating the new Ruby."
+end
+
 
 function update_ruby_tags
     which ctags
